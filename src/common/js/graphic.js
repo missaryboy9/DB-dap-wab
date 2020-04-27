@@ -1,7 +1,7 @@
 import { md5 } from './crypto'
 
-function GVerify(options) { // 创建一个图形验证码对象，接收options对象为参数
-    this.options = { // 默认options参数值
+function GVerify(option) { // 创建一个图形验证码对象，接收options对象为参数
+    let options = { // 默认options参数值
         id: "", // 容器Id
         canvasId: "verifyCanvas", // canvas的ID
         width: "100", // 默认canvas宽度
@@ -11,34 +11,28 @@ function GVerify(options) { // 创建一个图形验证码对象，接收options
         strict: false // 严格模式  是否过滤大小写，false为不区分大小写
     }
 
-    if (Object.prototype.toString.call(options) === "[object Object]") { // 判断传入参数类型
+    if (Object.prototype.toString.call(option) === "[object Object]") { // 判断传入参数类型
         for (var i in options) { // 根据传入的参数，修改默认参数值
-            this.options[i] = options[i];
+            options[i] = option[i];
         }
     } else {
-        this.options.id = options;
+       options.id = options;
     }
 
-    this.options.numArr = "0,1,2,3,4,5,6,7,8,9".split(",");
-    this.options.letterArr = getAllLetter();
+    options.numArr = "0,1,2,3,4,5,6,7,8,9".split(",");
+    options.letterArr = getAllLetter();
 
-    this._init();
-    this.refresh();
-}
-
-GVerify.prototype = {
     /** 版本号**/
-    version: '1.0.0',
 
     /** 初始化方法**/
-    _init: function () {
-        var con = document.getElementById(this.options.id);
+    let _init = () => {
+        var con = document.getElementById(options.id);
         var canvas = document.createElement("canvas");
-        this.options.width = con.offsetWidth > 0 ? con.offsetWidth : "100";
-        this.options.height = con.offsetHeight > 0 ? con.offsetHeight : "30";
-        canvas.id = this.options.canvasId;
-        canvas.width = this.options.width;
-        canvas.height = this.options.height;
+        options.width = con.offsetWidth > 0 ? con.offsetWidth : "100";
+        options.height = con.offsetHeight > 0 ? con.offsetHeight : "30";
+        canvas.id = options.canvasId;
+        canvas.width = options.width;
+        canvas.height = options.height;
         canvas.style.cursor = "pointer";
         canvas.innerHTML = "您的浏览器版本不支持canvas";
         con.appendChild(canvas);
@@ -46,39 +40,39 @@ GVerify.prototype = {
         canvas.onclick = function () {
             parent.refresh();
         }
-    },
+    }
 
     /** 生成验证码**/
-    refresh: function () {
-        var canvas = document.getElementById(this.options.canvasId);
+    let refresh = () => {
+        var canvas = document.getElementById(options.canvasId);
         if (canvas.getContext) {
             var ctx = canvas.getContext('2d');
         }
         ctx.textBaseline = "middle";
 
         ctx.fillStyle = randomColor(180, 240);
-        ctx.fillRect(0, 0, this.options.width, this.options.height);
+        ctx.fillRect(0, 0, options.width, options.height);
 
-        if (this.options.type === "blend") { // 判断验证码类型
-            var txtArr = this.options.numArr.concat(this.options.letterArr);
-        } else if (this.options.type === "number") {
-             txtArr = this.options.numArr;
+        if (options.type === "blend") { // 判断验证码类型
+            var txtArr = options.numArr.concat(options.letterArr);
+        } else if (options.type === "number") {
+             txtArr = options.numArr;
         } else {
-              txtArr = this.options.letterArr;
+              txtArr = options.letterArr;
         }
         var code_str = '';
         for (var i = 1; i <= 4; i++) {
             var txt = txtArr[randomNum(0, txtArr.length)];
             // this.options.code += txt;
             code_str += txt;
-            ctx.font = randomNum(this.options.height / 2, this.options.height) + 'px SimHei'; // 随机生成字体大小
+            ctx.font = randomNum(options.height / 2, options.height) + 'px SimHei'; // 随机生成字体大小
             ctx.fillStyle = randomColor(50, 160); // 随机生成字体颜色
             ctx.shadowOffsetX = randomNum(-3, 3);
             ctx.shadowOffsetY = randomNum(-3, 3);
             ctx.shadowBlur = randomNum(-3, 3);
             ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
-            var x = this.options.width / 5 * i;
-            var y = this.options.height / 2;
+            var x = options.width / 30 * i;
+            var y = options.height / 4;
             var deg = randomNum(-30, 30);
             /** 设置旋转角度和坐标原点**/
             ctx.translate(x, y);
@@ -88,42 +82,45 @@ GVerify.prototype = {
             ctx.rotate(-deg * Math.PI / 180);
             ctx.translate(-x, -y);
         }
-        if (this.options.strict) {
-            this.options.code = md5(code_str)
+        if (options.strict) {
+            options.code = md5(code_str)
         } else {
-            this.options.code = md5(code_str.toLowerCase())
+            options.code = md5(code_str.toLowerCase())
         }
         /** 绘制干扰线**/
         for (let i = 0; i < 4; i++) {
             ctx.strokeStyle = randomColor(40, 180);
             ctx.beginPath();
-            ctx.moveTo(randomNum(0, this.options.width), randomNum(0, this.options.height));
-            ctx.lineTo(randomNum(0, this.options.width), randomNum(0, this.options.height));
+            ctx.moveTo(randomNum(0, options.width), randomNum(0, options.height));
+            ctx.lineTo(randomNum(0, options.width), randomNum(0, options.height));
             ctx.stroke();
         }
         /** 绘制干扰点**/
-        for (let i = 0; i < this.options.width / 4; i++) {
+        for (let i = 0; i < options.width / 4; i++) {
             ctx.fillStyle = randomColor(0, 255);
             ctx.beginPath();
-            ctx.arc(randomNum(0, this.options.width), randomNum(0, this.options.height), 1, 0, 2 * Math.PI);
+            ctx.arc(randomNum(0, options.width), randomNum(0, options.height), 1, 0, 2 * Math.PI);
             ctx.fill();
         }
-    },
+    }
 
     /** 验证验证码**/
-    validate: function (code) {
-        if (this.options.strict) {
+    let validate = (code) => {
+        if (options.strict) {
             code = md5(code);
         } else {
             code = md5(code.toLowerCase());
         }
-        var v_code = this.options.code;
+        var v_code = options.code;
         if (code === v_code) {
             return true;
         } else {
             return false;
         }
     }
+
+    _init();
+    refresh();
 }
 
 /** 生成字母数组**/

@@ -7,6 +7,9 @@
     </glb-diadlog>
     <el-button @click="Switch">Switch</el-button>
     <el-button @click="getnode">getnode</el-button>
+    <div id="graphic">
+      <canvas id="verifyCanvas"></canvas>
+    </div>
     <glb-pagination
       :current-page.sync="currentPage"
       :articles-per-page="10"
@@ -38,6 +41,7 @@ import { getnodes } from '@/common/api/getbasenode'
 import axios from 'axios'
 import globaldialog from '@/components/Globdialog/index';
 import minins from './components'
+import GVerify from '@/common/js/graphic'
 
 export default {
   components: {
@@ -76,7 +80,12 @@ export default {
       }))
     }
   },
-
+  mounted() {
+    console.log('GVerify', GVerify)
+    GVerify({
+      id: 'graphic'
+    })
+  },
   methods: {
     getnode() {
       // let params = [
