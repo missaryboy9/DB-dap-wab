@@ -35,6 +35,7 @@ if (process.env.NODE_ENV === "production") {
 }
 import './element-variables.scss'
 // set ElementUI lang to EN
+
 Vue.use(ElementUI, { locale });
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
