@@ -1,0 +1,13 @@
+$headerbgc: #fff;
+$minwidth: 300px;
+$default: 500px;
+$larger: 800px;
+$iconcol: #ccc;
+
+:export {
+  herder: $headerbgc;
+  minwidth: $minwidth;
+  default: $default;
+  larger: $larger;
+  iconcol: $iconcol;
+}

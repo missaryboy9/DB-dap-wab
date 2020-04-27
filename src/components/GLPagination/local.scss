@@ -1,0 +1,71 @@
+.pagationmain {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  font-family: glbfonticon;
+  align-items: center;
+
+  > .totaliststyle {
+    font-weight: 900;
+    font-size: 13px;
+    color: #1d1f1af1;
+    > span {
+      font-size: 13px;
+      font-weight: 900;
+      color: rgba(71, 67, 67, 0.267);
+    }
+  }
+  .nationcjecklist {
+    display: flex;
+    > span {
+      font-size: 30px;
+      cursor: pointer;
+      color: #ccc;
+    }
+    > span:hover {
+      color: rgb(48, 207, 69);
+    }
+    > span:nth-of-type(2) {
+      display: inline-block;
+      transform: rotateZ(180deg);
+    }
+    ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0 20px;
+      li {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+
+input.NUM-INPUT::-webkit-outer-spin-button,
+input.NUM-INPUT::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.lastliststyle {
+  display: flex;
+  justify-content: space-between;
+  > span {
+    font-size: 15px;
+    margin-right: 20px;
+    color: #ccc;
+  }
+  > div {
+    font-size: 13px;
+    font-weight: 900;
+
+    > input {
+      width: 30px;
+      outline: none;
+      margin: 0 5px;
+      border-radius: 5px;
+      box-shadow: none;
+      border: 2px solid #ccc;
+      text-align: center;
+    }
+  }
+}
