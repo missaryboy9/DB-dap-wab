@@ -8,14 +8,20 @@
     <el-button @click="Switch">Switch</el-button>
     <el-button @click="getnode">getnode</el-button>
     <div id="graphic">
-      <canvas id="verifyCanvas"></canvas>
     </div>
+    <el-button @click="graphic">graphic</el-button>
+    <el-row>
+      <el-col :span="2">
+        <el-input v-model="inputnum"></el-input>
+      </el-col>
+    </el-row>
     <glb-pagination
       :current-page.sync="currentPage"
       :articles-per-page="10"
       :totaldate="51"
     >
     </glb-pagination>
+
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -68,7 +74,9 @@ export default {
           sendpropos: '',
           getemit: ''
         }
-      ]
+      ],
+      GVerifymode: '',
+      inputnum: ''
     };
   },
   watch: {
@@ -81,12 +89,14 @@ export default {
     }
   },
   mounted() {
-    console.log('GVerify', GVerify)
-    GVerify({
+    this.GVerifymode = GVerify({
       id: 'graphic'
     })
   },
   methods: {
+    graphic() {
+      alert(this.GVerifymode(this.inputnum))
+    },
     getnode() {
       // let params = [
       //   { name: 1 },
@@ -102,6 +112,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#graphic {
+  width: 100px;
+  height: 30px;
+}
 // .applicationManagement {
 //   padding: 15px;
 //   display: flex;

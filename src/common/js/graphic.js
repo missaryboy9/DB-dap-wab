@@ -22,8 +22,6 @@ function GVerify(option) { // 创建一个图形验证码对象，接收options�
     options.numArr = "0,1,2,3,4,5,6,7,8,9".split(",");
     options.letterArr = getAllLetter();
 
-    /** 版本号**/
-
     /** 初始化方法**/
     let _init = () => {
         var con = document.getElementById(options.id);
@@ -36,9 +34,8 @@ function GVerify(option) { // 创建一个图形验证码对象，接收options�
         canvas.style.cursor = "pointer";
         canvas.innerHTML = "您的浏览器版本不支持canvas";
         con.appendChild(canvas);
-        var parent = this;
         canvas.onclick = function () {
-            parent.refresh();
+            refresh();
         }
     }
 
@@ -65,14 +62,14 @@ function GVerify(option) { // 创建一个图形验证码对象，接收options�
             var txt = txtArr[randomNum(0, txtArr.length)];
             // this.options.code += txt;
             code_str += txt;
-            ctx.font = randomNum(options.height / 2, options.height) + 'px SimHei'; // 随机生成字体大小
+            ctx.font = randomNum(options.height / 1, options.height) + 'px SimHei'; // 随机生成字体大小
             ctx.fillStyle = randomColor(50, 160); // 随机生成字体颜色
             ctx.shadowOffsetX = randomNum(-3, 3);
             ctx.shadowOffsetY = randomNum(-3, 3);
             ctx.shadowBlur = randomNum(-3, 3);
             ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
-            var x = options.width / 30 * i;
-            var y = options.height / 4;
+            var x = options.width / 5 * i;
+            var y = options.height / 2;
             var deg = randomNum(-30, 30);
             /** 设置旋转角度和坐标原点**/
             ctx.translate(x, y);
@@ -121,6 +118,7 @@ function GVerify(option) { // 创建一个图形验证码对象，接收options�
 
     _init();
     refresh();
+    return validate
 }
 
 /** 生成字母数组**/
