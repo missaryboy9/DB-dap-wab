@@ -12,9 +12,9 @@ function GVerify(option) { // 创建一个图形验证码对象，接收options�
     }
 
     if (Object.prototype.toString.call(option) === "[object Object]") { // 判断传入参数类型
-        for (var i in options) { // 根据传入的参数，修改默认参数值
-            options[i] = option[i];
-        }
+        Object.keys(options).forEach(element => {
+        options[element] = option[element];
+        });
     } else {
        options.id = options;
     }

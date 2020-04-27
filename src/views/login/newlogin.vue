@@ -29,7 +29,11 @@
           label-position="top"
           :size="size"
         >
-          <el-form-item label="用户名" prop="username" class="form-item-style">
+          <el-form-item
+            label="用户名"
+            prop="username"
+            class="form-item-style"
+          >
             <el-input
               ref="username"
               v-model="loginForm.username"
@@ -40,7 +44,11 @@
               auto-complete="on"
             ></el-input>
           </el-form-item>
-          <el-form-item label="密码" prop="password" class="form-item-style">
+          <el-form-item
+            label="密码"
+            prop="password"
+            class="form-item-style"
+          >
             <el-input
               :key="passwordType"
               ref="password"
@@ -48,6 +56,24 @@
               :type="passwordType"
               placeholder="请填写登录密码"
               name="password"
+              tabindex="2"
+              auto-complete="on"
+              @keyup.enter.native="handleLogin"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="密码"
+            prop="password"
+            class="form-item-style"
+          >
+            <div id="graphic">
+            </div>
+            <el-input
+              :key="graphic"
+              ref="graphic"
+              v-model="loginForm.graphic"
+              type="text"
+              placeholder="请填写图形验证码"
               tabindex="2"
               auto-complete="on"
               @keyup.enter.native="handleLogin"
@@ -73,6 +99,7 @@
 // import Verify from 'vue2-verify';
 import { loginpath } from "./logindata";
 import { validUsername } from "@/utils/validate";
+import GVerify from '@/common/js/graphic'
 
 export default {
   name: "Logins",
@@ -97,7 +124,8 @@ export default {
     return {
       loginForm: {
         username: "admin",
-        password: "111111"
+        password: "111111",
+        graphic: ''
       },
       loginRules: {
         username: [
@@ -112,17 +140,18 @@ export default {
       redirect: undefined,
       checked: true,
       fullWidth: document.body.clientWidth,
-      size: ""
+      size: "",
+      graphic: ''
     };
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         this.redirect = route.query && route.query.redirect;
       },
       immediate: true
     },
-    fullWidth: function(value) {
+    fullWidth: function (value) {
       this.fullWidth = value;
       if (this.fullWidth <= 768) {
         this.size = "mini";
@@ -134,6 +163,9 @@ export default {
     }
   },
   mounted() {
+    this.GVerifymode = GVerify({
+      id: 'graphic'
+    })
     if (this.fullWidth <= 768) {
       this.size = "mini";
     } else if (this.fullWidth >= 768 && this.fullWidth <= 1024) {
@@ -159,6 +191,7 @@ export default {
       });
     },
     handleLogin() {
+      if (!this.GVerifymode(`${this.loginForm.graphic}`)) return
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           loginpath.then(res => {
@@ -257,7 +290,7 @@ $gray: #b9bdc6;
       display: grid;
       grid-template-rows: 1fr 5fr;
       width: 30%;
-      height: 75%;
+      height: 90%;
       background-color: #ffffff;
       border-radius: 5px;
       padding: 20px 30px;
