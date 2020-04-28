@@ -13,7 +13,9 @@ function GVerify(option) { // 创建一个图形验证码对象，接收options�
 
     if (Object.prototype.toString.call(option) === "[object Object]") { // 判断传入参数类型
         Object.keys(options).forEach(element => {
-        options[element] = option[element];
+       if (element in option) {
+            options[element] = option[element];
+       }
         });
     } else {
        options.id = options;

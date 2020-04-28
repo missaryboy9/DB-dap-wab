@@ -16,7 +16,7 @@ addrouters.install = (Vue, { router, store }) => {
 
   let addrouter = (e, fun) => {
     store.dispatch("setlogin/GenerateRoutes", e).then(res => {
-      console.log(res, "resresresresresres");
+      // console.log(res, "resresresresresres");
       // 路由签名
       router.addRoutes(res);
       // 动态理由加载成功
