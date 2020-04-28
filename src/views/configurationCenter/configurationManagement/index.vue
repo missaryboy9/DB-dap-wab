@@ -4,17 +4,16 @@
       style="padding-top:10px;"
       :gutter="20"
     >
-      <el-col :span="6">
+      <el-col :span="5">
         <v-tree></v-tree>
       </el-col>
-      <el-col :span="18">
+      <el-col :span="19" class="myclass">
         <el-card>
           <el-form
             label-width="80px"
             size="mini"
-            class="myclass"
           >
-            <el-form-item label="业务名称">
+            <el-form-item label="业务坝称">
               <el-input
                 v-model="name"
                 suffix-icon="el-icon-search"
@@ -61,10 +60,12 @@ export default {
   flex-direction: column;
   > :last-child {
     overflow: auto;
-    height: 80vh;
   }
 }
 .myclass /deep/ .el-input {
   width: 35%;
+}
+.myclass /deep/ .el-card.is-always-shadow{
+  height: 559px;
 }
 </style>

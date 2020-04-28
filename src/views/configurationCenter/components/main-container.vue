@@ -1,7 +1,7 @@
 <template>
   <div class="filtermain">
     <el-table
-      :data="tableData"
+      :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
       :row-class-name="tableRowClassName"
       style="margin-bottom:10px;border:1px solid #eaedf6;"
       :header-cell-style="headerCellStyle"
@@ -50,8 +50,8 @@
       <el-col :span="24">
         <glb-pagination
           :current-page.sync="currentPage"
-          :articles-per-page="10"
-          :totaldate="21"
+          :articles-per-page="pageSize"
+          :totaldate="tableData.length"
         >
         </glb-pagination>
       </el-col>
@@ -132,6 +132,7 @@ export default {
       },
       dialogVisible: false,
       currentPage: 1,
+      pageSize:10,
       codestring: "",
       tableclum: [
         {

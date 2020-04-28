@@ -34,5 +34,15 @@ export default {
             id: 8,
             label: '二级 3-2'
           }]
+        }, {
+          id: 4,
+          label: '一级 4',
+          children: [{
+            id: 9,
+            label: '二级 4-1'
+          }, {
+            id: 10,
+            label: '二级 4-2'
+          }]
         }]
 }

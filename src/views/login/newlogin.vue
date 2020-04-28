@@ -358,8 +358,8 @@ $gray: #b9bdc6;
 }
 @media screen and (max-width: 1024px) and (min-width: 768px) {
   .login-form-container {
-    width: 42% !important;
-    height: 65% !important;
+    width: 55% !important;
+    height: 72% !important;
     .form-header {
       font-size: 15px !important ;
     }

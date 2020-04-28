@@ -328,6 +328,13 @@ li:hover {
 .el-icon-menuswenjian:before {
   color: #ffc400;
 }
+.myclass .el-tree{
+  left: 28px;
+}
+.myclass >>> .el-tree-node__content{
+  height: 32px;
+  font-weight: 600;
+}
 .myclass >>> .el-collapse-item__content {
   padding: 10px 5px 25px 10px;
 }
@@ -336,6 +343,10 @@ li:hover {
 }
 .myclass >>> .el-icon-arrow-right:before {
   content: "\e791";
+}
+.myclass >>> .el-icon-caret-right{
+  color:#303133;
+  font-size: 14px;
 }
 .myclass >>> .el-icon-caret-right:before {
   content: "\e61a";
@@ -403,4 +414,9 @@ li:hover {
   top: 12px;
   width: 24px;
 }
+.myclass /deep/ .el-collapse-item__wrap{
+  height: 512px;
+  overflow-y: auto;
+}
+.myclass /deep/ .el-collapse-item__wrap::-webkit-scrollbar { width: 0 !important }
 </style>
