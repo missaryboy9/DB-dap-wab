@@ -62,7 +62,7 @@
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="密码"
+            label="图形验证码"
             prop="password"
             class="form-item-style"
           >
