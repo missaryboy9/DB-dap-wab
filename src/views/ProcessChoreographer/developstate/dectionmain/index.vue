@@ -1,10 +1,10 @@
 <template>
   <div class="main">
-    <el-card style="height:700px">
-      <el-header>
-        <el-page-header @back="goBack" content="详情页面"></el-page-header>
-      </el-header>
-      <el-container class="myclass" style="padding:0 20px">
+    <el-card>
+      <el-page-header @back="goBack" title="返回首页" content="穿梭框展示"></el-page-header>
+    </el-card>
+    <el-card style="height:700px;margin-top:20px;padding:0 20px">
+      <el-row class="myclass">
         <el-transfer
           filterable
           :filter-method="filterMethod"
@@ -12,7 +12,15 @@
           v-model="value"
           :data="data"
         ></el-transfer>
-      </el-container>
+      </el-row>
+      <el-row style="margin-top:20px">
+        <div>
+          <el-button :plain="true" @click="open2">成功</el-button>
+          <el-button :plain="true" @click="open3">警告</el-button>
+          <el-button :plain="true" @click="open1">消息</el-button>
+          <el-button :plain="true" @click="open4">错误</el-button>
+        </div>
+      </el-row>
     </el-card>
   </div>
 </template>
@@ -54,7 +62,27 @@ export default {
   },
   methods: {
     goBack() {
-      console.log("go back");
+      this.$router.push("/");
+    },
+    open1() {
+      this.$message("这是一条消息提示");
+    },
+    open2() {
+      this.$message({
+        message: "恭喜你，这是一条成功消息",
+        type: "success"
+      });
+    },
+
+    open3() {
+      this.$message({
+        message: "警告哦，这是一条警告消息",
+        type: "warning"
+      });
+    },
+
+    open4() {
+      this.$message.error("错了哦，这是一条错误消息");
     }
   }
 };

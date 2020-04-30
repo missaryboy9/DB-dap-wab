@@ -1,32 +1,14 @@
 <template>
   <div class="filter">
     <el-row>
-      <el-button
-        size="mini"
-        type="primary"
-        @click="addapplication"
-      >新增应用</el-button>
-      <el-button
-        size="mini"
-        type="primary"
-        @click="appconfig"
-      >应用配置</el-button>
-      <el-button
-        size="mini"
-        type="primary"
-        @click="addnewapplication($event)"
-      >添加新应用</el-button>
+      <el-button size="mini" type="primary" @click="addapplication">新增应用</el-button>
+      <el-button size="mini" type="primary" @click="appconfig">应用配置</el-button>
+      <el-button size="mini" type="primary" @click="addnewapplication($event)">添加新应用</el-button>
     </el-row>
-    <glb-diadlog
-      titlename="新增应用"
-      :show.sync="dialogVisible"
-    >
+    <glb-diadlog titlename="新增应用" :show.sync="dialogVisible">
       <fromdata></fromdata>
     </glb-diadlog>
-    <glb-diadlog
-      titlename="应用配置"
-      :show.sync="dialogVisible1"
-    >
+    <glb-diadlog titlename="应用配置" :show.sync="dialogVisible1">
       <dialogList></dialogList>
     </glb-diadlog>
     <div>
@@ -36,9 +18,9 @@
 </template>
 
 <script type="text/ecmascript-6">
-import dialogList from './dialog-list'
-import fromdata from './fromdata'
-import globaldialog from '@/components/Globdialog/index';
+import dialogList from "./dialog-list";
+import fromdata from "./fromdata";
+import globaldialog from "@/components/Globdialog/index";
 
 export default {
   components: {
@@ -50,8 +32,8 @@ export default {
     return {
       show: false,
       ruleForm: {
-        Numbering: '',
-        description: ''
+        Numbering: "",
+        description: ""
       },
       dialogVisible: false,
       dialogVisible1: false
@@ -59,19 +41,23 @@ export default {
   },
   methods: {
     addnewapplication(e) {
-      let { clientX, clientY } = e
+      let { clientX, clientY } = e;
       this.$toastmessage({
         digital: {
           clientX: clientX,
           clientY: clientY,
-          type: 'NewApplication'
+          type: "NewApplication"
         },
         methods: {
           success: res => {
-            this.$bus.$emit('addtablelist', res)
+            this.$bus.$emit("addtablelist", res);
+            this.$message({
+              message: "添加成功",
+              type: "success"
+            });
           }
         }
-      })
+      });
     },
     appconfig() {
       this.dialogVisible1 = true;
@@ -91,8 +77,8 @@ export default {
     },
     clear(e) {
       Object.keys(e).forEach(element => {
-        e[ element ] = '';
-      });;
+        e[element] = "";
+      });
     }
   }
 };
