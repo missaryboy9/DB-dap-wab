@@ -6,18 +6,15 @@
     style="width: 100%"
     @selection-change="handleSelectionChange">
     <el-table-column
-      type="selection"
-      width="55">
+      type="selection">
     </el-table-column>
     <el-table-column
-      label="日期"
-      width="120">
+      label="日期">
       <template slot-scope="scope">{{ scope.row.date }}</template>
     </el-table-column>
     <el-table-column
       prop="name"
-      label="姓名"
-      width="120">
+      label="姓名">
     </el-table-column>
     <el-table-column
       prop="address"
