@@ -7,9 +7,10 @@
         <div class="fontpont">
           <span class="font">
             <i>
-              中国电子信息产业集团
-              <span>.</span>
-              文思海辉技术有限公司
+              分布式后台管理系统
+              <!--中国电子信息产业集团-->
+              <!--<span>.</span>-->
+              <!--文思海辉技术有限公司-->
             </i>
           </span>
           <span class="fontlast" />
@@ -82,7 +83,7 @@
               <el-avatar
                 shape="circle"
                 size="large"
-                src="http://p1.music.126.net/ql3nSwy0XKow_HAoZzRZgw==/109951163111196186.jpg?param=640y300"
+                src="../../../assets/avatar.jpg"
               />
 
             </div>
@@ -245,7 +246,7 @@ export default {
   width: 100%;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 0.1fr 1fr 6fr 2fr 4fr;
+  grid-template-columns: 0.1fr 1.5fr 6fr 2fr 4fr;
   grid-gap: 10px;
   grid-template-areas: "pl lo dc sc us";
 }
@@ -256,8 +257,10 @@ export default {
   grid-area: lo;
   background-image: url("../../../assets/logo/wslogo.png");
   background-repeat: no-repeat;
-  background-size: 100% 65%;
+  background-size: 90% 60%;
   background-position: center;
+  /*width: 130px;*/
+  /*margin-left: 10px;*/
 }
 .DynamicName {
   display: flex;

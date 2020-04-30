@@ -75,7 +75,7 @@ export default {
 
 <style scoped lang="scss">
 .applicationManagement {
-  padding: 15px;
+  /*padding: 15px;*/
   display: flex;
   flex-direction: column;
   > :last-child {

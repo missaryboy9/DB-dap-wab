@@ -319,6 +319,7 @@ li:hover {
   color: #ffffff;
   font-size: 14px;
   font-weight: 900;
+  height: 28px;
 }
 .icon-style {
   font-family: "iconfont" !important;
@@ -329,7 +330,7 @@ li:hover {
   color: #ffc400;
 }
 .myclass .el-tree{
-  left: 28px;
+  left: 5px;
 }
 .myclass >>> .el-tree-node__content{
   height: 32px;
@@ -362,7 +363,7 @@ li:hover {
 /* 树形结构节点添加连线 */
 .tree /deep/ .el-tree-node {
   position: relative;
-  padding-left: 16px;
+  padding-left: 5px;
 }
 
 .tree /deep/ .el-tree-node__children {
@@ -412,10 +413,10 @@ li:hover {
   border-top: 1px dashed #b8b9bb;
   height: 20px;
   top: 12px;
-  width: 24px;
+  width: 15px;
 }
 .myclass /deep/ .el-collapse-item__wrap{
-  height: 512px;
+  height: 531px;
   overflow-y: auto;
 }
 .myclass /deep/ .el-collapse-item__wrap::-webkit-scrollbar { width: 0 !important }

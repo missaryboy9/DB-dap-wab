@@ -1,38 +1,46 @@
+<!--<template>-->
+  <!--<div-->
+    <!--ref="tab"-->
+    <!--class="tab"-->
+  <!--&gt;-->
+    <!--<a-->
+      <!--v-show="isIcon"-->
+      <!--class="icon lefticon el-icon-arrow-left"-->
+      <!--@click="leftMove"-->
+    <!--&gt;-->
+    <!--</a>-->
+    <!--<div-->
+      <!--ref="content"-->
+      <!--class="content"-->
+    <!--&gt;-->
+      <!--<el-tag-->
+        <!--v-for="item in items"-->
+        <!--ref="tag"-->
+        <!--:key="item.label"-->
+        <!--effect="plain"-->
+        <!--:closable="item.closable"-->
+        <!--:style="$route.path === item.path?activeStyle :''"-->
+        <!--@close="closePath(item)"-->
+        <!--@click="openPath(item)"-->
+      <!--&gt;-->
+        <!--{{ item.label }}-->
+      <!--</el-tag>-->
+    <!--</div>-->
+    <!--<a-->
+      <!--v-show="isIcon"-->
+      <!--class="icon righticon el-icon-arrow-right"-->
+      <!--@click="rightMove"-->
+    <!--&gt;-->
+    <!--</a>-->
+  <!--</div>-->
+<!--</template>-->
 <template>
-  <div
-    ref="tab"
-    class="tab"
-  >
-    <a
-      v-show="isIcon"
-      class="icon lefticon el-icon-arrow-left"
-      @click="leftMove"
-    >
-    </a>
-    <div
-      ref="content"
-      class="content"
-    >
-      <el-tag
-        v-for="item in items"
-        ref="tag"
-        :key="item.label"
-        effect="plain"
-        :closable="item.closable"
-        :style="$route.path === item.path?activeStyle :''"
-        @close="closePath(item)"
-        @click="openPath(item)"
-      >
-        {{ item.label }}
-      </el-tag>
-    </div>
-    <a
-      v-show="isIcon"
-      class="icon righticon el-icon-arrow-right"
-      @click="rightMove"
-    >
-    </a>
-  </div>
+  <el-tabs v-model="tab"  @tab-click="openPath" closable class="nav-tab">
+    <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
+    <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+  </el-tabs>
 </template>
 
 <script>
@@ -150,6 +158,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+  .nav-tab{
+    padding: 0 15px;
+  }
+  /deep/   .el-tabs__header{
+    margin:0  !important;
+  }
 // 设置tab页
 /deep/ .el-tabs__content {
   display: none !important;
@@ -163,6 +177,15 @@ export default {
 /deep/ #tab-0 > .el-icon-close {
   display: none;
 }
+  /deep/ .el-tabs__nav-wrap::after{
+    height: 1px;
+  }
+  /deep/  .el-tabs__active-bar{
+    height: 1px;
+  }
+  /deep/.el-tabs__item .el-icon-close{
+    /*margin-left:20px;*/
+  }
 .fiexed {
   position: fixed;
   right: 40px;

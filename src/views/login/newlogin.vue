@@ -64,7 +64,7 @@
           <el-form-item
             label="图形验证码"
             prop="password"
-            class="form-item-style"
+            class="form-item-style inlineclass"
           >
             <div id="graphic">
             </div>
@@ -199,7 +199,7 @@ export default {
             this.loading = true;
             this.$addrouter(res.data);
             this.$router.push({
-              path: "/applicationManagement/applicationManagement"
+              path: "/homePage/homePage"
             });
           });
           this.$store

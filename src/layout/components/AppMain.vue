@@ -33,7 +33,7 @@ export default {
   position: relative;
   overflow: auto;
   background-color: #f7f6fb;
-  padding: 20px;
+  padding: 15px;
   /* background-color: #ccc; */
 }
 .fixed-header + .app-main {

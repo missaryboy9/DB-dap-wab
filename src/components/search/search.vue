@@ -126,7 +126,7 @@ export default {
   padding-left: 15px;
 }
 /deep/.el-card__body {
-  padding: 20px 5px 0px 5px;
+  padding: 10px 5px 5px 5px;
 }
 #searchInfo {
   padding-left: 20px;

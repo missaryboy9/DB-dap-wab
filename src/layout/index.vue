@@ -98,7 +98,7 @@ export default {
   left: 0;
   min-width: 1000px;
   animation: showtitle 1s forwards;
-  box-shadow: 0 0 20px 2px rgba(153, 153, 153, 0.6);
+  box-shadow: 0 0 10px 1px rgba(153, 153, 153, 0.1);
 }
 .app-wrapper {
   @include clearfix;

@@ -40,10 +40,10 @@ export default {
   font-family: "iconfont" !important;
 }
 .textstyle {
-  font-family: "sourcefont";
+  /*font-family: "sourcefont";*/
   letter-spacing: 2px;
-  font-weight: 100;
-  font-size: 12px;
+  /*font-weight: 100;*/
+  /*font-size: 12px;*/
   margin-left: 0;
 }
 </style>

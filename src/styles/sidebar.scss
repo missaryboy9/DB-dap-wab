@@ -8,7 +8,7 @@
   }
 
   .sidebar-container {
-    border-radius: 10px;
+    //border-radius: 10px;
     transition: width 0.28s;
     width: $sideBarWidth !important;
     background-color: $menuBg;
@@ -20,7 +20,7 @@
     left: 0;
     z-index: 1001;
     overflow: hidden;
-    top: 7.1vh;
+    //top: 7.1vh;
 
     // reset element-ui css
     .horizontal-collapse-transition {
