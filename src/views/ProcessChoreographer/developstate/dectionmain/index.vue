@@ -1,32 +1,76 @@
 <template>
   <div class="main">
-    <el-card>
-      <el-page-header @back="goBack" title="返回首页" content="穿梭框展示"></el-page-header>
-    </el-card>
-    <el-card style="height:700px;margin-top:20px;padding:0 20px">
-      <el-row class="myclass">
-        <el-transfer
-          filterable
-          :filter-method="filterMethod"
-          filter-placeholder="请输入城市拼音"
-          v-model="value"
-          :data="data"
-        ></el-transfer>
-      </el-row>
-      <el-row style="margin-top:20px">
-        <div>
-          <el-button :plain="true" @click="open2">成功</el-button>
-          <el-button :plain="true" @click="open3">警告</el-button>
-          <el-button :plain="true" @click="open1">消息</el-button>
-          <el-button :plain="true" @click="open4">错误</el-button>
-        </div>
-      </el-row>
+    <el-card class="myclass">
+      <el-tabs :tab-position="tabPosition" style="height:80vh">
+        <el-tab-pane label="穿梭框展示">
+          <el-transfer
+            filterable
+            :filter-method="filterMethod"
+            filter-placeholder="请输入城市拼音"
+            v-model="value"
+            :data="data"
+          ></el-transfer>
+        </el-tab-pane>
+        <el-tab-pane label="提示展示">
+          <el-divider>
+            <i class="el-icon-mobile-phone"></i>
+          </el-divider>
+          <el-row>
+            <el-button :plain="true" @click="open2" size="mini">成功</el-button>
+            <el-button :plain="true" @click="open3" size="mini">警告</el-button>
+            <el-button :plain="true" @click="open1" size="mini">消息</el-button>
+            <el-button :plain="true" @click="open4" size="mini">错误</el-button>
+          </el-row>
+          <el-divider>
+            <i class="el-icon-mobile-phone"></i>
+          </el-divider>
+          <el-row>
+            <el-tooltip content="Top center" placement="top">
+              <el-button size="mini">Dark</el-button>
+            </el-tooltip>
+            <el-tooltip content="Bottom center" placement="bottom" effect="light">
+              <el-button size="mini">Light</el-button>
+            </el-tooltip>
+          </el-row>
+          <el-divider>
+            <i class="el-icon-mobile-phone"></i>
+          </el-divider>
+          <el-row>
+            <el-alert
+              title="成功提示的文案"
+              type="success"
+              description="文字说明文字说明文字说明文字说明文字说明文字说明"
+              show-icon
+            ></el-alert>
+            <el-alert title="消息提示的文案" type="info" description="文字说明文字说明文字说明文字说明文字说明文字说明" show-icon></el-alert>
+            <el-alert
+              title="警告提示的文案"
+              type="warning"
+              description="文字说明文字说明文字说明文字说明文字说明文字说明"
+              show-icon
+            ></el-alert>
+            <el-alert title="错误提示的文案" type="error" description="文字说明文字说明文字说明文字说明文字说明文字说明" show-icon></el-alert>
+          </el-row>
+        </el-tab-pane>
+        <el-tab-pane label="表格展示">
+          <div v-for="item in modulelist" :key="item.name">
+            <el-divider content-position="left">{{item.title}}</el-divider>
+            <component :is="item.name" />
+          </div>
+        </el-tab-pane>
+      </el-tabs>
     </el-card>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import { CustomTemplate, MultiSelected, TreeTable } from "./components";
 export default {
+  components: {
+    CustomTemplate,
+    MultiSelected,
+    TreeTable
+  },
   data() {
     const generateData = _ => {
       const data = [];
@@ -54,16 +98,28 @@ export default {
       value: [],
       filterMethod(query, item) {
         return item.pinyin.indexOf(query) > -1;
-      }
+      },
+      tabPosition: "right",
+      modulelist: [
+        {
+          name: "MultiSelected",
+          title: "多选表格"
+        },
+        {
+          name: "CustomTemplate",
+          title: "自定义模版"
+        },
+        {
+          name: "TreeTable",
+          title: "树表格"
+        }
+      ]
     };
   },
   mounted() {
     // console.log(go, '11111111111111111');
   },
   methods: {
-    goBack() {
-      this.$router.push("/");
-    },
     open1() {
       this.$message("这是一条消息提示");
     },
@@ -91,10 +147,12 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/mixin.scss";
 .main {
-  @include innerpadding(15px);
 }
 .myclass /deep/ .el-transfer-panel__header {
   background: #080367;
+}
+.myclass /deep/ .el-transfer {
+  padding: 30px;
 }
 .myclass
   >>> .el-transfer-panel
@@ -110,5 +168,21 @@ export default {
   .el-checkbox__label
   span {
   color: white;
+}
+.myclass /deep/ .el-transfer-panel__body {
+  height: 500px;
+}
+.myclass /deep/ .el-transfer-panel__list.is-filterable {
+  height: 400px;
+}
+.myclass /deep/ .el-alert {
+  margin: 15px 0;
+}
+.myclass /deep/ .el-tabs__content {
+  height: 100%;
+  overflow: auto;
+}
+.myclass /deep/ .el-tabs__content::-webkit-scrollbar {
+  width: 0 !important;
 }
 </style>

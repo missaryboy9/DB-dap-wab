@@ -52,10 +52,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/mixin.scss";
-.main {
-  @include innerpadding(15px);
-}
 .myclass /deep/ .el-collapse-item__header{
     padding-left: 20px;
 }
