@@ -29,11 +29,7 @@
           label-position="top"
           :size="size"
         >
-          <el-form-item
-            label="用户名"
-            prop="username"
-            class="form-item-style"
-          >
+          <el-form-item label="用户名" prop="username" class="form-item-style">
             <el-input
               ref="username"
               v-model="loginForm.username"
@@ -44,11 +40,7 @@
               auto-complete="on"
             ></el-input>
           </el-form-item>
-          <el-form-item
-            label="密码"
-            prop="password"
-            class="form-item-style"
-          >
+          <el-form-item label="密码" prop="password" class="form-item-style">
             <el-input
               :key="passwordType"
               ref="password"
@@ -61,13 +53,7 @@
               @keyup.enter.native="handleLogin"
             ></el-input>
           </el-form-item>
-          <el-form-item
-            label="图形验证码"
-            prop="password"
-            class="form-item-style inlineclass"
-          >
-            <div id="graphic">
-            </div>
+          <el-form-item label="图形验证码" prop="password" class="form-item-style inlineclass">
             <el-input
               :key="graphic"
               ref="graphic"
@@ -78,6 +64,7 @@
               auto-complete="on"
               @keyup.enter.native="handleLogin"
             ></el-input>
+            <div id="graphic" :class="[isS?'small':'']"></div>
           </el-form-item>
           <el-checkbox v-model="checked">自动登录</el-checkbox>
           <el-form-item class="form-item-style">
@@ -99,7 +86,7 @@
 // import Verify from 'vue2-verify';
 import { loginpath } from "./logindata";
 import { validUsername } from "@/utils/validate";
-import GVerify from '@/common/js/graphic'
+import GVerify from "@/common/js/graphic";
 
 export default {
   name: "Logins",
@@ -125,7 +112,7 @@ export default {
       loginForm: {
         username: "admin",
         password: "111111",
-        graphic: ''
+        graphic: ""
       },
       loginRules: {
         username: [
@@ -141,36 +128,40 @@ export default {
       checked: true,
       fullWidth: document.body.clientWidth,
       size: "",
-      graphic: ''
+      graphic: "",
+      isS: false,
     };
   },
   watch: {
     $route: {
-      handler: function (route) {
+      handler: function(route) {
         this.redirect = route.query && route.query.redirect;
       },
       immediate: true
     },
-    fullWidth: function (value) {
+    fullWidth: function(value) {
       this.fullWidth = value;
-      if (this.fullWidth <= 768) {
-        this.size = "mini";
+      if (this.fullWidth < 768) {
+        this.size = "small";
+        this.isS = true;
       } else if (this.fullWidth >= 768 && this.fullWidth <= 1024) {
         this.size = "small";
-      } else if (this.fullWidth >= 1024) {
+        this.isS = true;
+      } else if (this.fullWidth > 1024) {
         this.size = "";
+        this.isS = false;
       }
     }
   },
   mounted() {
     this.GVerifymode = GVerify({
-      id: 'graphic'
-    })
-    if (this.fullWidth <= 768) {
-      this.size = "mini";
+      id: "graphic"
+    });
+    if (this.fullWidth < 768) {
+      this.size = "small";
     } else if (this.fullWidth >= 768 && this.fullWidth <= 1024) {
       this.size = "small";
-    } else if (this.fullWidth >= 1024) {
+    } else if (this.fullWidth > 1024) {
       this.size = "";
     }
     window.onresize = () => {
@@ -191,7 +182,7 @@ export default {
       });
     },
     handleLogin() {
-      if (!this.GVerifymode(`${this.loginForm.graphic}`)) return
+      if (!this.GVerifymode(`${this.loginForm.graphic}`)) return;
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           loginpath.then(res => {
@@ -199,7 +190,7 @@ export default {
             this.loading = true;
             this.$addrouter(res.data);
             this.$router.push({
-              path: "/homePage/homePage"
+              path: "/applicationManagement/applicationManagement"
             });
           });
           this.$store
@@ -306,6 +297,15 @@ $gray: #b9bdc6;
         display: grid;
       }
     }
+    .inlineclass /deep/ .el-form-item__content {
+      display: flex;
+      #graphic {
+        width: 200px !important;
+        border-radius: 30px;
+        margin-left: 10px;
+        height: 40px;
+      }
+    }
     .form-style {
       & >>> .el-form-item > .el-form-item__label:before {
         content: "";
@@ -343,8 +343,8 @@ $gray: #b9bdc6;
     }
   }
   .login-form-container {
-    width: 42% !important;
-    height: 50% !important;
+    width: 54% !important;
+    height: "";
     .form-header {
       font-size: 15px !important ;
     }
@@ -365,6 +365,14 @@ $gray: #b9bdc6;
     }
     /deep/ .el-form .el-form-item .el-form-item__label {
       font-size: 12px !important ;
+    }
+  }
+  .inlineclass /deep/ .el-form-item__content {
+    #graphic {
+      width: 200px !important;
+      height: 32px !important;
+      border-radius: 20px;
+      margin-left: 10px;
     }
   }
   .footer {

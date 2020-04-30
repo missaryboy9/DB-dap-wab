@@ -1,7 +1,7 @@
 <template>
   <div class="filtermain">
     <el-table
-      :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+      :data="tableData"
       :row-class-name="tableRowClassName"
       style="margin-bottom:10px;border:1px solid #eaedf6;"
       :header-cell-style="headerCellStyle"
@@ -132,7 +132,7 @@ export default {
       },
       dialogVisible: false,
       currentPage: 1,
-      pageSize:10,
+      pageSize: 10,
       codestring: "",
       tableclum: [
         {
