@@ -132,7 +132,7 @@ export default {
     },
     // 点击tab跳到相应的路由
     openPath(info) {
-      this.$router.push(info.path)
+//      this.$router.push(info.path)
     },
     rightMove() {
       var parentWidth = this.$refs.tab.parentNode.offsetWidth
