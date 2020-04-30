@@ -2,39 +2,39 @@
   <div class="applicationManagement">
 
 
-    <el-card class="box-card">
-      <div slot="header" class="clearfix">
-        <span>平台组件</span>
-        <el-button style="float: right; padding: 3px 0" type="text">更多</el-button>
-      </div>
-      <el-row >
-        <el-col :span="6"  v-for="(item,index) in itemList" :key="index">
-          <el-card class="box-card"  shadow="hover" > {{item.name }}</el-card>
-        </el-col>
-      </el-row>
+    <!--<el-card class="box-card">-->
+      <!--<div slot="header" class="clearfix">-->
+        <!--<span>平台组件</span>-->
+        <!--<el-button style="float: right; padding: 3px 0" type="text">更多</el-button>-->
+      <!--</div>-->
+      <!--<el-row >-->
+        <!--<el-col :span="6"  v-for="(item,index) in itemList" :key="index">-->
+          <!--<el-card class="box-card"  shadow="hover" > {{item.name }}</el-card>-->
+        <!--</el-col>-->
+      <!--</el-row>-->
 
-    </el-card>
-    <!--<glb-diadlog :show.sync="show">-->
-      <!--<p v-for="item in 5">2222</p>-->
-      <!--<add>-->
-      <!--</add>-->
-    <!--</glb-diadlog>-->
-    <!--<el-button @click="Switch">Switch</el-button>-->
-    <!--<el-button @click="getnode">getnode</el-button>-->
-    <!--<div id="graphic">-->
-    <!--</div>-->
-    <!--<el-button @click="graphic">graphic</el-button>-->
-    <!--<el-row>-->
-      <!--<el-col :span="2">-->
-        <!--<el-input v-model="inputnum"></el-input>-->
-      <!--</el-col>-->
-    <!--</el-row>-->
-    <!--<glb-pagination-->
-      <!--:current-page.sync="currentPage"-->
-      <!--:articles-per-page="10"-->
-      <!--:totaldate="51"-->
-    <!--&gt;-->
-    <!--</glb-pagination>-->
+    <!--</el-card>-->
+    <glb-diadlog :show.sync="show">
+      <p v-for="item in 5">2222</p>
+      <add>
+      </add>
+    </glb-diadlog>
+    <el-button @click="Switch">Switch</el-button>
+    <el-button @click="getnode">getnode</el-button>
+    <div id="graphic">
+    </div>
+    <el-button @click="graphic">graphic</el-button>
+    <el-row>
+      <el-col :span="2">
+        <el-input v-model="inputnum"></el-input>
+      </el-col>
+    </el-row>
+    <glb-pagination
+      :current-page.sync="currentPage"
+      :articles-per-page="10"
+      :totaldate="51"
+    >
+    </glb-pagination>
 
   </div>
 </template>
