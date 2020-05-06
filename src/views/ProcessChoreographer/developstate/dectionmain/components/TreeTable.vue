@@ -1,6 +1,7 @@
 <template>
   <el-table
     :data="tableData"
+    size="mini"
     style="width: 100%">
     <el-table-column type="expand">
       <template slot-scope="props">

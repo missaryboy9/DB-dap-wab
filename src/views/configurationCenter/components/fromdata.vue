@@ -78,7 +78,7 @@
       <el-form-item label="特殊资源">
         <el-radio-group
           v-model="sizeForm.resource"
-          size="medium"
+          size="mini"
         >
           <el-radio
             border
@@ -90,13 +90,14 @@
           ></el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item size="large">
+      <!-- <el-form-item size="large">
         <el-button
           type="primary"
           @click="onSubmit"
+          size="mini"
         >立即创建</el-button>
-        <el-button @click="close">取消</el-button>
-      </el-form-item>
+        <el-button @click="close" size="mini">取消</el-button>
+      </el-form-item> -->
     </el-form>
   </div>
 </template>
