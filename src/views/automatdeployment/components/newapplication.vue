@@ -48,7 +48,6 @@
               @click="addsub"
             />
           </el-col>
-          </el-form>
         </div>
       </transition>
     </el-row>

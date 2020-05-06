@@ -1,10 +1,10 @@
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1587452664005'); /* IE9 */
-  src: url('iconfont.eot?t=1587452664005#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  src: url('iconfont.eot?t=1588747806185'); /* IE9 */
+  src: url('iconfont.eot?t=1588747806185#iefix') format('embedded-opentype'), /* IE6-IE8 */
   url('data:application/x-font-woff2') format('woff2'),
-  url('iconfont.woff?t=1587452664005') format('woff'),
-  url('iconfont.ttf?t=1587452664005') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('iconfont.svg?t=1587452664005#iconfont') format('svg'); /* iOS 4.1- */
+  url('iconfont.woff?t=1588747806185') format('woff'),
+  url('iconfont.ttf?t=1588747806185') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1588747806185#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 [class^='el-icon-menus'],[class*="el-icon-menus"] {
@@ -13,6 +13,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.el-icon-menusshouye:before {
+  content: "\e624";
 }
 
 .el-icon-menuswenjian:before {

@@ -9,6 +9,12 @@ export default {
         checked: false,
         data: [
           {
+            name: "首页",
+            template: "homePage",
+            src: "homePage",
+            icon:'el-icon-menusshouye'
+          },
+          {
             name: "应用管理",
             template: "applicationManagement",
             src: "applicationManagement",
