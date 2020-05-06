@@ -12,7 +12,7 @@
           </div>
           <div class="main">
             <el-divider content-position="left">平台组件</el-divider>
-            <dv-border-box-8 :reverse="true" title="平台组件" :color="['#ebebec', '#080367']" dur="10">
+            <dv-border-box-8 :reverse="true" :color="['#ebebec', '#080367']" dur="10">
               <div class="componts">
                 <el-row :gutter="12" style="padding:0 10px">
                   <el-col :span="24/route.length" v-for="item in route" :key="item.name">
@@ -90,6 +90,9 @@ i {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  h2{
+      color: #080367;
+  }
   .date {
     padding: 10px;
     background-color: #ebebec;
