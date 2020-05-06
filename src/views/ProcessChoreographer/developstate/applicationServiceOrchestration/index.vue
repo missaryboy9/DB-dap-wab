@@ -13,9 +13,7 @@
           <chart></chart>
         </el-tab-pane>
         <el-tab-pane label="列表详情" name="fourth">
-          <div v-for="o in 4" :key="o" class="text item">
-            {{ '列表内容 ' + o }}
-          </div>
+          <list></list>
         </el-tab-pane>
       </el-tabs>
     </el-card>
@@ -23,12 +21,13 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { formInfo, tableInfo, chart } from './components'
+import { formInfo, tableInfo, chart, list } from './components'
 export default {
   components: {
     formInfo,
     tableInfo,
-    chart
+    chart,
+    list
   },
   data() {
     return {
