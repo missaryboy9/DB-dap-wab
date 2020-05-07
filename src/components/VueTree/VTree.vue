@@ -133,6 +133,14 @@ export default {
   watch: {
     filterText(val) {
       this.$refs.tree.filter(val);
+    },
+    getIcon(node) {
+      // return node.childNodes.length>0? node.expanded? 'openfile':'closefile':'file'
+      return node.childNodes.length > 0
+        ? node.expanded
+          ? "el-icon-menuswenjian-dakai"
+          : "el-icon-menuswenjianguanbi"
+        : "el-icon-menuswenjian";
     }
   },
   created() {
