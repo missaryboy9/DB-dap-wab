@@ -6,6 +6,9 @@
       style="margin-bottom:10px;border:1px solid #eaedf6;"
       :header-cell-style="headerCellStyle"
       stripe
+      v-loading="loading"
+      element-loading-text="拼命加载中"
+      element-loading-spinner="el-icon-loading"
     >
       <template v-for="(item,index) in tableclum">
         <el-table-column
@@ -95,6 +98,7 @@ export default {
       currentPage: 1,
       pageSize: 10,
       codestring: "",
+      loading: true,
       tableclum: [
         {
           prop: "date",
@@ -139,6 +143,11 @@ export default {
   },
   beforeDestroy() {
     this.$bus.$off("addtablelist");
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
   },
   methods: {
     closetag() {
@@ -216,7 +225,7 @@ export default {
   padding: 0;
   height: 34px;
 }
-.slotf{
+.slotf {
   display: flex;
   justify-content: flex-end;
 }
