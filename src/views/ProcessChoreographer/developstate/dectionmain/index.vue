@@ -3,14 +3,36 @@
     <el-card class="myclass">
       <el-tabs :tab-position="tabPosition" style="height:80vh">
         <el-tab-pane label="穿梭框展示">
-          <el-transfer
-            filterable
-            :filter-method="filterMethod"
-            filter-placeholder="请输入城市拼音"
-            v-model="value"
-            :titles="['Source', 'Target']"
-            :data="data"
-          ></el-transfer>
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-divider content-position="left">输入字段选择</el-divider>
+            </el-col>
+            <el-col :span="12">
+              <el-divider content-position="left">输出字段选择</el-divider>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-transfer
+                filterable
+                :filter-method="filterMethod"
+                filter-placeholder="关键词搜素"
+                v-model="value"
+                :titles="['可选字段', '已选字段']"
+                :data="data"
+              ></el-transfer>
+            </el-col>
+            <el-col :span="12">
+              <el-transfer
+                filterable
+                :filter-method="filterMethod"
+                filter-placeholder="关键词搜素"
+                v-model="value"
+                :titles="['可选字段', '已选字段']"
+                :data="data"
+              ></el-transfer>
+            </el-col>
+          </el-row>
         </el-tab-pane>
         <el-tab-pane label="提示展示">
           <el-divider>
@@ -75,15 +97,27 @@ export default {
   data() {
     const generateData = _ => {
       const data = [];
-      const cities = ["上海", "北京", "广州", "深圳", "南京", "西安", "成都"];
+      const cities = [
+        "用户编号|userId|String",
+        "用户名称|userName|String",
+        "渠道编号|chnlId|String",
+        "服务编号|servId|String",
+        "交易日期|txnDate|String",
+        "交易时间|txnTime|String",
+        "渠道流水号|chnlSeq|String",
+        "消费方流水号|transSeqNo|String",
+        "服务场景码|servcScn|String"
+      ];
       const pinyin = [
-        "shanghai",
-        "beijing",
-        "guangzhou",
-        "shenzhen",
-        "nanjing",
-        "xian",
-        "chengdu"
+        "userId",
+        "userName",
+        "chnlId",
+        "servId",
+        "txnDate",
+        "txnTime",
+        "chnlSeq",
+        "transSeqNo",
+        "servcScn"
       ];
       cities.forEach((city, index) => {
         data.push({
@@ -100,7 +134,7 @@ export default {
       filterMethod(query, item) {
         return item.pinyin.indexOf(query) > -1;
       },
-      tabPosition: "right",
+      tabPosition: "top",
       modulelist: [
         {
           name: "MultiSelected",
@@ -152,7 +186,7 @@ export default {
     background: #eaedf4;
   }
   /deep/ .el-transfer {
-    padding: 30px;
+    // padding: 30px;
   }
   /deep/ .el-transfer-panel__body {
     height: 500px;
@@ -167,9 +201,9 @@ export default {
     height: 100%;
     overflow: auto;
   }
-  /deep/ .el-tabs__content::-webkit-scrollbar {
-    width: 0 !important;
-  }
+  // /deep/ .el-tabs__content::-webkit-scrollbar {
+  //   width: 0 !important;
+  // }
   /deep/ .el-transfer-panel {
     border-radius: 8px;
   }
