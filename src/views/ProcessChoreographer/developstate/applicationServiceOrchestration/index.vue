@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      activeName: 'second'
+      activeName: 'first'
     };
   },
   mounted() {
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
       handleClick(tab, event) {
-        console.log(tab, event);
+        console.log(tab);
       }
   }
 };
