@@ -12,9 +12,6 @@
         <el-tab-pane label="图表详情" name="third">
           <chart></chart>
         </el-tab-pane>
-        <el-tab-pane label="列表详情" name="fourth">
-          <list></list>
-        </el-tab-pane>
       </el-tabs>
     </el-card>
   </div>

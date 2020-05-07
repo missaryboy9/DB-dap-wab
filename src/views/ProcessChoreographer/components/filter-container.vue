@@ -4,14 +4,14 @@
       <el-col :span="3">
         <el-input
           v-model="input"
-          size="small "
+          size="mini"
           placeholder="请输入内容"
         />
       </el-col>
-      <el-col :span="2">
+      <el-col :span="3">
         <el-select
           v-model="value"
-          size="small "
+          size="mini "
           placeholder="重要性"
         >
           <el-option
@@ -25,7 +25,7 @@
       <el-col :span="3">
         <el-select
           v-model="value"
-          size="small "
+          size="mini"
           placeholder="类型"
         >
           <el-option
@@ -39,7 +39,7 @@
       <el-col :span="3">
         <el-select
           v-model="value"
-          size="small "
+          size="mini"
           placeholder="类型"
         >
           <el-option
@@ -53,20 +53,14 @@
       <el-col :span="2">
         <el-button
           type="primary"
-          size="small "
-        >主要按钮</el-button>
+          size="mini"
+        ><i class="el-icon-plus"></i> 新增</el-button>
       </el-col>
       <el-col :span="2">
         <el-button
-          type="primary"
-          size="small "
-        >主要按钮</el-button>
-      </el-col>
-      <el-col :span="2">
-        <el-button
-          type="primary"
-          size="small "
-        >主要按钮</el-button>
+          size="mini"
+          plain
+        ><i class="el-icon-download"></i>导出数据</el-button>
       </el-col>
     </el-row>
   </div>

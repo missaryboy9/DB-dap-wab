@@ -63,7 +63,7 @@
 </template>
 <script>
 export default {
-  props: {
+   props: {
    'ishandle': {
      type: Boolean,
      default: false
