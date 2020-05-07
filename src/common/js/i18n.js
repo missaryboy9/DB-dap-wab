@@ -1,6 +1,8 @@
 
 import store from '@/store'
-import { getasynlangunage } from '@/common/api/asynlanguage'
+import langs from '@/i18n/langs'
+import { get, put } from './store'
+import { getremoteLanguage } from '@/common/api/remoteLanguage'
 /**
  *  String format template
  *  - Inspired:
@@ -69,20 +71,29 @@ function hasOwn(val, i) {
             this.message = {}
             this.loadstate = {
               loading: false,
-              nativeLanguage: ''
+              nativeLanguage: '',
+              loadmore: {}
             }
         }
-        get (lang, message) {
+        get (key) {
+          let msg = this.message[this.local]
+          return template(key, msg)
+        }
+        // synchronousLanguage
+        getsynchronousLanguage () {
 
         }
-        set() {
-
+        // asynchronousLanguage
+        getasynchronousLanguage() {
+          import(`@/i18n/lang/${this.loadstate.nativeLanguage}.json`).then(res => {
+            return res
+          })
         }
-        getAsynlanguage(params) {
-           getasynlangunage(params).then(res => {
-               return Promise.resolve(() => {
-                  res
-              })
+        // remoteLanguage
+        getremoteLanguage(params) {
+           getremoteLanguage(params).then(res => {
+              this.message = res
+              return Promise.resolve(res)
           })
         }
         getnavigator() {
@@ -91,6 +102,7 @@ function hasOwn(val, i) {
           return this.loadstate.nativeLanguage
         }
     }
+    let i18n = new I18n()
     Object.defineProperty(I18n.prototype, 'local', { // vuex存储当前语言类型
       get() {
         return store.state.local
@@ -99,6 +111,15 @@ function hasOwn(val, i) {
         store.state.local = val
       }
     })
-    let i18n = new I18n()
+
+    i18n.install = (Vue) => {
+      Object.defineProperty(Vue.prototype, '$t', {
+        get() {
+          return (key) => {
+              i18n.get(key)
+          }
+        }
+      })
+    }
 
 export default i18n
