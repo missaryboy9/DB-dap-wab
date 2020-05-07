@@ -9,33 +9,19 @@
             :span-method="objectSpanMethod"
             size="mini"
             :fit="true"
+            v-loading="loading"
+            element-loading-text="拼命加载中"
+            element-loading-spinner="el-icon-loading"
+            element-loading-background="rgba(0, 0, 0, 0.8)"
           >
-            <el-table-column
-              prop="date"
-              label="日期"
-            ></el-table-column>
+            <el-table-column prop="date" label="日期"></el-table-column>
             <el-table-column label="配送信息">
-              <el-table-column
-                prop="name"
-                label="姓名"
-              ></el-table-column>
+              <el-table-column prop="name" label="姓名"></el-table-column>
               <el-table-column label="地址">
-                <el-table-column
-                  prop="province"
-                  label="省份"
-                ></el-table-column>
-                <el-table-column
-                  prop="city"
-                  label="市区"
-                ></el-table-column>
-                <el-table-column
-                  prop="address"
-                  label="地址"
-                ></el-table-column>
-                <el-table-column
-                  prop="zip"
-                  label="邮编"
-                ></el-table-column>
+                <el-table-column prop="province" label="省份"></el-table-column>
+                <el-table-column prop="city" label="市区"></el-table-column>
+                <el-table-column prop="address" label="地址"></el-table-column>
+                <el-table-column prop="zip" label="邮编"></el-table-column>
               </el-table-column>
             </el-table-column>
           </el-table>
@@ -43,19 +29,12 @@
       </el-row>
       <el-row>
         <el-col :span="24">
-          <glb-pagination
-            :current-page.sync="currentPage"
-            :articles-per-page="10"
-            :totaldate="55"
-          >
-          </glb-pagination>
+          <glb-pagination :current-page.sync="currentPage" :articles-per-page="10" :totaldate="55"></glb-pagination>
         </el-col>
       </el-row>
     </div>
     <div class="bottom">
-      <span class="pagination">
-
-      </span>
+      <span class="pagination"></span>
     </div>
   </div>
 </template>
@@ -123,8 +102,14 @@ export default {
           zip: 200333
         }
       ],
-      currentPage: 1
+      currentPage: 1,
+      loading: true
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
   },
   methods: {
     // 修改table header的背景色

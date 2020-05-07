@@ -9,7 +9,10 @@
 ## PROBLEM
 
 node-sass 安装不上的问题
-在 Windows 上？是否要编译本机节点模块？使用此一线安装构建工具：
+
+1:https://github.com/lmk123/blog/issues/28
+
+2:在 Windows 上？是否要编译本机节点模块？使用此一线安装构建工具：
 
 npm install --global --production windows-build-tools
 
