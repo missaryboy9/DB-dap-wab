@@ -27,18 +27,11 @@
         width="300px"
       >
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            circle
-            icon="el-icon-edit"
-            @click="edit"
-          ></el-button>
-          <el-button
-            size="mini"
-            circle
-            icon="el-icon-delete"
-            @click="del(scope)"
-          ></el-button>
+          <table-btn
+            :row="scope"
+            :table-list.sync="tableData"
+            :show.sync="show"
+          ></table-btn>
         </template>
       </el-table-column>
     </el-table>
@@ -54,10 +47,13 @@
         <el-button
           type="primary"
           size="mini"
+          plain
           @click="onSubmit"
         >立即创建</el-button>
         <el-button
+          type="danger"
           size="mini"
+          plain
           @click="close"
         >取消</el-button>
       </div>
@@ -111,10 +107,12 @@
             >
               <el-button
                 type="primary"
+                plain
                 size="mini"
               >保存</el-button>
               <el-button
                 type="danger"
+                plain
                 size="mini"
               >退出</el-button>
             </el-col>
@@ -132,10 +130,10 @@
 <script type="text/ecmascript-6">
 import fromdata from "./fromdata";
 import tabledata from "./tabledata";
-import listnone from "./listnone";
+// import listnone from "./listnone";
 export default {
   components: {
-    listnone,
+    // listnone,
     fromdata
   },
   data() {
