@@ -68,7 +68,8 @@ function hasOwn(val, i) {
         constructor() {
             this.message = {}
             this.loadstate = {
-              loading: false
+              loading: false,
+              nativeLanguage: ''
             }
         }
         get (lang, message) {
@@ -83,6 +84,11 @@ function hasOwn(val, i) {
                   res
               })
           })
+        }
+        getnavigator() {
+          let lang = navigator.language || navigator.userLanguage
+          this.loadstate.nativeLanguage = lang.substr(0, 2)
+          return this.loadstate.nativeLanguage
         }
     }
     Object.defineProperty(I18n.prototype, 'local', { // vuex存储当前语言类型
