@@ -10,7 +10,11 @@ import SecureLS from "secure-ls";
 var ls = new SecureLS({ isCompression: false });
 
 Vue.use(Vuex);
+let state = {
+  local: 'zh'
+}
 const store = new Vuex.Store({
+  state,
   modules: {
     app,
     settings,

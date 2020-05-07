@@ -36,9 +36,9 @@ if (process.env.NODE_ENV === "production") {
 import './element-variables.scss'
 // set ElementUI lang to EN
 
-Vue.use(ElementUI, { locale });
+// Vue.use(ElementUI, { locale });
 // 如果想要中文版 element-ui，按如下方式声明
-// Vue.use(ElementUI)
+Vue.use(ElementUI)
 // set routeraddter
 Vue.use(addrouter, { router, store });
 Vue.use(initecharts);
@@ -61,6 +61,8 @@ Vue.use(VXETable)
 // 给 vue 实例挂载全局窗口对象
 Vue.prototype.$XModal = VXETable.modal
 
+import echarts from "echarts";
+Vue.prototype.$echarts = echarts
 new Vue({
   el: "#app",
   router,

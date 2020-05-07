@@ -91,6 +91,18 @@ export default {
           date: "2020-05-15"
         }
       ],
+      sexList: [
+        {
+          label: "Man",
+          value: "1",
+          disabled: false
+        },
+        {
+          label: "Women",
+          value: "2",
+          disabled: false
+        }
+      ],
       roleList: [
         {
           label: "前端",

@@ -43,7 +43,6 @@ export default {
             showform: [
               { type: 'Input', label: '姓名', prop: 'name', width: '180px', placeholder: '请输入姓名...' },
               { type: 'Input', label: '年龄', prop: 'age', width: '180px', placeholder: '请输入年龄...' }
-              // { type: 'Select', label: '性别', prop: 'sex', width: '180px', options: sexs, props: sexProps, change: row => '', placeholder: '请选择性别...' }
             ],
             handledata: {
               name: null,
