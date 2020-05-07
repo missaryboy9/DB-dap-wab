@@ -48,10 +48,19 @@ Vue.use(bus);
 Vue.config.productionTip = false;
 
 import DataV from '@jiaminghi/data-view'
-
 Vue.use(DataV)
 import vtree from "./components/VueTree/index.js";
 Vue.use(vtree);
+
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/index.css'
+
+Vue.use(VXETable)
+
+// 给 vue 实例挂载全局窗口对象
+Vue.prototype.$XModal = VXETable.modal
+
 new Vue({
   el: "#app",
   router,
