@@ -1,3 +1,6 @@
+
+import store from '@/store'
+import { getasynlangunage } from '@/common/api/asynlanguage'
 /**
  *  String format template
  *  - Inspired:
@@ -60,14 +63,36 @@ function isNull (val) {
 function hasOwn(val, i) {
     return !!val.hasOwnProperty(i)
 }
-let install = (_vue) => {
+
     class I18n {
-        static install : () => void
-        static version: string
         constructor() {
+            this.message = {}
+            this.loadstate = {
+              loading: false
+            }
+        }
+        get (lang, message) {
 
         }
-    }
-}
+        set() {
 
-export default install
+        }
+        getAsynlanguage(params) {
+           getasynlangunage(params).then(res => {
+               return Promise.resolve(() => {
+                  res
+              })
+          })
+        }
+    }
+    Object.defineProperty(I18n.prototype, 'local', { // vuex存储当前语言类型
+      get() {
+        return store.state.local
+      },
+      set(val) {
+        store.state.local = val
+      }
+    })
+    let i18n = new I18n()
+
+export default i18n
