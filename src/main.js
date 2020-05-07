@@ -55,7 +55,7 @@ Vue.use(vtree);
 import 'xe-utils'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/index.css'
-
+import './styles/vxe-table.scss'
 Vue.use(VXETable)
 
 // 给 vue 实例挂载全局窗口对象
