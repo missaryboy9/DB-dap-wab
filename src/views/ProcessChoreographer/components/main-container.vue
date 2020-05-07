@@ -1,60 +1,45 @@
 <template>
   <div class="filtermain">
-    <el-table
-      :data="tableData"
-      border
-      :row-class-name="tableRowClassName"
-      style="margin-bottom:10px"
-      stripe
-    >
-      <template v-for="item in tableclum">
+    <el-card>
+      <el-table
+        :data="tableData"
+        border
+        :row-class-name="tableRowClassName"
+        style="margin-bottom:10px"
+        stripe
+      >
+        <template v-for="item in tableclum">
+          <el-table-column
+            align="center"
+            :prop="item.prop"
+            :label="item.label"
+            :width="item.width"
+            :show-overflow-tooltip="true"
+          />
+        </template>
         <el-table-column
           align="center"
-          :prop="item.prop"
-          :label="item.label"
-          :width="item.width"
-          :show-overflow-tooltip="true"
-        />
-      </template>
-      <el-table-column
-        align="center"
-        label="操作"
-        class-name="tableclumstyles"
-        width="300px"
-      >
-        <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="primary"
-            @click="edit"
-          >编辑</el-button>
-          <el-button
-            size="mini"
-            type="danger"
-            @click="del"
-          >删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <el-row align="bottom">
-      <el-col :span="4">
-        共100条
-      </el-col>
-      <el-col
-        :span="6"
-        :offset="12"
-      >
+          label="操作"
+          class-name="tableclumstyles"
+          width="300px"
+        >
+          <template slot-scope="scope">
+            <table-btn :row="scope" :table-list.sync="tableData" :show.sync="dialogVisible"></table-btn>
+          </template>
+        </el-table-column>
+      </el-table>
+      <el-row align="bottom">
         <el-pagination
           background
           :total="10000"
           :current-page.sync="currentPage1"
           :page-size="100"
-          layout=" prev, pager, next"
+          layout="total, sizes, prev, pager, next, jumper"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         />
-      </el-col>
-    </el-row>
+      </el-row>
+    </el-card>
     <div>
       <el-dialog
         title="修改应用"
@@ -96,10 +81,12 @@
               <el-button
                 type="primary"
                 size="mini"
+                plain
               >保存</el-button>
               <el-button
                 type="danger"
                 size="mini"
+                plain
               >退出</el-button>
             </el-col>
           </el-row>
@@ -160,10 +147,6 @@ export default {
 
     },
     handleCurrentChange() { },
-    edit() {
-      this.dialogVisible = true;
-    },
-    del() { },
     tableRowClassName() {
       return 'rowclass';
     }
@@ -180,5 +163,11 @@ export default {
 }
 .customwidth {
   width: 20rem;
+}
+.el-card {
+  padding:10px 15px ;
+}
+.el-pagination{
+  margin-top:10px;
 }
 </style>

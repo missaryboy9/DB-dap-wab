@@ -1,9 +1,9 @@
 <template>
   <div class="filter">
     <el-row>
-      <el-button size="mini" type="primary" @click="addapplication">新增应用</el-button>
-      <el-button size="mini" type="primary" @click="appconfig">应用配置</el-button>
-      <el-button size="mini" type="primary" @click="addnewapplication($event)">添加新应用</el-button>
+      <el-button size="mini" type="primary" @click="addapplication"><i class="el-icon-plus"></i> 新增应用</el-button>
+      <el-button size="mini" type="danger" @click="appconfig">应用配置</el-button>
+      <el-button size="mini" type="primary" @click="addnewapplication($event)"><i class="el-icon-plus"></i> 添加新应用</el-button>
     </el-row>
     <glb-diadlog titlename="新增应用" :show.sync="dialogVisible">
       <fromdata></fromdata>

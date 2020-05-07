@@ -4,7 +4,7 @@ import "normalize.css/normalize.css"; // A modern alternative to CSS resets
 
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-import locale from "element-ui/lib/locale/lang/en"; // lang i18n
+import locale from "element-ui/lib/locale/lang/zh-CN"; // lang i18n
 
 import "@/styles/index.scss"; // global css
 import App from "./App";
@@ -15,7 +15,7 @@ import initecharts from "./common/js/initecarts";
 import search from "./components/search/search.js";
 import glbcomponent from "./components/glbindex.js";
 import bus from '@/common/js/bus.js'
-
+import tableButton from "./components/tableBtn/tableBtn.js";
 // import 'lib-flexible';
 import "@/icons"; // icon
 // import '@/permission' // permission control
@@ -36,13 +36,14 @@ if (process.env.NODE_ENV === "production") {
 import './element-variables.scss'
 // set ElementUI lang to EN
 
-// Vue.use(ElementUI, { locale });
+Vue.use(ElementUI, { locale });
 // 如果想要中文版 element-ui，按如下方式声明
-Vue.use(ElementUI)
+// Vue.use(ElementUI)
 // set routeraddter
 Vue.use(addrouter, { router, store });
 Vue.use(initecharts);
 Vue.use(search);
+Vue.use(tableButton);
 Vue.use(glbcomponent);
 Vue.use(bus);
 Vue.config.productionTip = false;
