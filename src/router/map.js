@@ -78,5 +78,6 @@ exports.asynvmap_ = {
   machineconfiguration: () => import("@/views/automatdeployment/machinemanagement/machineconfiguration"),
   machinegroupconfiguration: () => import("@/views/automatdeployment/machinemanagement/machinegroupconfiguration"),
   checkrule: () => import("@/views/automatdeployment/parameterconfiguration/checkrule"),
-  timeconfiguration: () => import("@/views/automatdeployment/parameterconfiguration/timeconfiguration")
+  timeconfiguration: () => import("@/views/automatdeployment/parameterconfiguration/timeconfiguration"),
+  homePage: () =>import("@/views/homepage")
 };

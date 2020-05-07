@@ -1,24 +1,26 @@
 .pagationmain {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0 30px;
   font-family: glbfonticon;
   align-items: center;
 
   > .totaliststyle {
     font-weight: 900;
-    font-size: 13px;
+    font-size:13px;
     color: #1d1f1af1;
+    margin-right: 10px;
     > span {
-      font-size: 13px;
+      font-size:13px;
       font-weight: 900;
       color: rgba(71, 67, 67, 0.267);
+      margin: 0px 5px;
     }
   }
   .nationcjecklist {
     display: flex;
     > span {
-      font-size: 30px;
+      font-size: 20px;
       cursor: pointer;
       color: #ccc;
     }
@@ -33,7 +35,7 @@
       display: flex;
       list-style: none;
       padding: 0;
-      margin: 0 20px;
+      margin: 0 10px;
       li {
         display: flex;
         align-items: center;
@@ -50,12 +52,12 @@ input.NUM-INPUT::-webkit-inner-spin-button {
   display: flex;
   justify-content: space-between;
   > span {
-    font-size: 15px;
-    margin-right: 20px;
+    font-size:13px;
+    margin-right: 10px;
     color: #ccc;
   }
   > div {
-    font-size: 13px;
+    font-size:13px;
     font-weight: 900;
 
     > input {

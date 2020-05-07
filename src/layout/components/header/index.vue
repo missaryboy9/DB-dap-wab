@@ -96,7 +96,7 @@
             slot="dropdown"
             class="user-dropdown"
           >
-            <router-link to="/">
+            <router-link to="/homePage/homePage">
               <el-dropdown-item>
                 Home
               </el-dropdown-item>

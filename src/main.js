@@ -36,9 +36,9 @@ if (process.env.NODE_ENV === "production") {
 import './element-variables.scss'
 // set ElementUI lang to EN
 
-Vue.use(ElementUI, { locale });
+// Vue.use(ElementUI, { locale });
 // 如果想要中文版 element-ui，按如下方式声明
-// Vue.use(ElementUI)
+Vue.use(ElementUI)
 // set routeraddter
 Vue.use(addrouter, { router, store });
 Vue.use(initecharts);
@@ -52,6 +52,8 @@ import DataV from '@jiaminghi/data-view'
 Vue.use(DataV)
 import vtree from "./components/VueTree/index.js";
 Vue.use(vtree);
+import echarts from "echarts";
+Vue.prototype.$echarts = echarts
 new Vue({
   el: "#app",
   router,
