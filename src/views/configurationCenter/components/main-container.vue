@@ -1,12 +1,12 @@
 <template>
   <div class="filtermain">
     <el-table
+      v-loading="loading"
       :data="tableData"
       :row-class-name="tableRowClassName"
       style="margin-bottom:10px;border:1px solid #eaedf6;"
       :header-cell-style="headerCellStyle"
       stripe
-      v-loading="loading"
       element-loading-text="拼命加载中"
       element-loading-spinner="el-icon-loading"
     >
@@ -20,18 +20,46 @@
           :show-overflow-tooltip="true"
         ></el-table-column>
       </template>
-      <el-table-column align="center" label="操作" class-name="tableclumstyles" width="300px">
+      <el-table-column
+        align="center"
+        label="操作"
+        class-name="tableclumstyles"
+        width="300px"
+      >
         <template slot-scope="scope">
-          <el-button size="mini" circle icon="el-icon-edit" @click="edit"></el-button>
-          <el-button size="mini" circle icon="el-icon-delete" @click="del(scope)"></el-button>
+          <el-button
+            size="mini"
+            circle
+            icon="el-icon-edit"
+            @click="edit"
+          ></el-button>
+          <el-button
+            size="mini"
+            circle
+            icon="el-icon-delete"
+            @click="del(scope)"
+          ></el-button>
         </template>
       </el-table-column>
     </el-table>
-    <Glb-diadlog :show.sync="show" titlename="编辑应用">
+    <Glb-diadlog
+      :show.sync="show"
+      titlename="编辑应用"
+    >
       <fromdata @closetag="closetag"></fromdata>
-      <div slot="footer" class="slotf">
-        <el-button type="primary" @click="onSubmit" size="mini">立即创建</el-button>
-        <el-button @click="close" size="mini">取消</el-button>
+      <div
+        slot="footer"
+        class="slotf"
+      >
+        <el-button
+          type="primary"
+          size="mini"
+          @click="onSubmit"
+        >立即创建</el-button>
+        <el-button
+          size="mini"
+          @click="close"
+        >取消</el-button>
       </div>
     </Glb-diadlog>
     <el-row align="bottom">
@@ -51,21 +79,44 @@
         :append-to-body="true"
         custom-class="customwidth"
       >
-        <el-form ref="form" :model="sizeForm" label-width="auto" size="mini">
+        <el-form
+          ref="form"
+          :model="sizeForm"
+          label-width="auto"
+          size="mini"
+        >
           <el-row class="showrow">
-            <el-col :offset="1" :span="20">
+            <el-col
+              :offset="1"
+              :span="20"
+            >
               <el-form-item label="应用编号">
                 <el-input v-model="sizeForm.Numbering" />
               </el-form-item>
             </el-col>
-            <el-col :offset="1" :span="20">
+            <el-col
+              :offset="1"
+              :span="20"
+            >
               <el-form-item label="应用名称">
-                <el-input v-model="sizeForm.name" type="textarea" />
+                <el-input
+                  v-model="sizeForm.name"
+                  type="textarea"
+                />
               </el-form-item>
             </el-col>
-            <el-col :offset="12" style="margin-top:20px">
-              <el-button type="primary" size="mini">保存</el-button>
-              <el-button type="danger" size="mini">退出</el-button>
+            <el-col
+              :offset="12"
+              style="margin-top:20px"
+            >
+              <el-button
+                type="primary"
+                size="mini"
+              >保存</el-button>
+              <el-button
+                type="danger"
+                size="mini"
+              >退出</el-button>
             </el-col>
           </el-row>
         </el-form>
@@ -140,14 +191,12 @@ export default {
         businessName: "PLUGIN_CHECK"
       });
     });
-  },
-  beforeDestroy() {
-    this.$bus.$off("addtablelist");
-  },
-  mounted() {
     setTimeout(() => {
       this.loading = false;
     }, 2000);
+  },
+  beforeDestroy() {
+    this.$bus.$off("addtablelist");
   },
   methods: {
     closetag() {
@@ -173,8 +222,8 @@ export default {
         return "background-color: #eaedf6;";
       }
     },
-    handleSizeChange() {},
-    handleCurrentChange() {},
+    handleSizeChange() { },
+    handleCurrentChange() { },
     edit() {
       this.show = true;
     },
