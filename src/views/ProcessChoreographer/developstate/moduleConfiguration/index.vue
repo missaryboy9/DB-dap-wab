@@ -2,8 +2,8 @@
   <div class="main">
     <vxe-toolbar>
       <template v-slot:buttons>
-        <vxe-button @click="insertEvent()">新增</vxe-button>
-        <vxe-button @click="$refs.xTable.removeCheckboxRow()">删除选中</vxe-button>
+        <vxe-button @click="insertEvent()" size="mini">新增</vxe-button>
+        <vxe-button @click="$refs.xTable.removeCheckboxRow()" size="mini">删除选中</vxe-button>
       </template>
     </vxe-toolbar>
 
@@ -11,6 +11,7 @@
       border
       resizable
       ref="xTable"
+      size="mini"
       max-height="400"
       :data="tableData"
       :columns="tableColumn"
