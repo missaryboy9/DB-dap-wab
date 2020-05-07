@@ -2,6 +2,18 @@ exports.loginpath = Promise.resolve({
   code: 20000,
   data: [
     {
+      path: "/homePage",
+      src: "Layout",
+      children: [
+        {
+          path: "homePage",
+          name: "首页",
+          src: "homePage",
+          meta: { title: "首页", icon: "el-icon-menusshouye" }
+        }
+      ]
+    },
+    {
       path: "/applicationManagement",
       src: "Layout",
       children: [

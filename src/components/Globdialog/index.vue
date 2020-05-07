@@ -1,10 +1,6 @@
 <template>
-
   <div class="dialogmain">
-    <div
-      v-if="show"
-      class="mask"
-    />
+    <div v-if="show" class="mask" />
     <transition name="el-fade-in-linear">
       <div
         v-if="show"
@@ -13,10 +9,7 @@
         class="pop-upLayer"
         :class="[mainstyle,isfull?'fullcree':'']"
       >
-        <div
-          class="pop-upLayerHeader"
-          @headehideclick="hideclick"
-        >
+        <div class="pop-upLayerHeader" @headehideclick="hideclick">
           <headertop
             ref="headertop"
             v-bind="$attrs"
@@ -26,7 +19,6 @@
         </div>
         <div class="pop-upLayerMAIN">
           <slot />
-
         </div>
         <div class="pop-upLayerfooter">
           <slot name="footer" />
@@ -37,11 +29,11 @@
 </template>
 
 <script type="text/ecmascript-6">
-import headertop from './components/header';
-import clickoutside from '@/common/js/clickoutside';
-import movedialog from './config/plugInUnit'
+import headertop from "./components/header";
+import clickoutside from "@/common/js/clickoutside";
+import movedialog from "./config/plugInUnit";
 export default {
-  name: 'GlbDiadlog',
+  name: "GlbDiadlog",
   directives: {
     clickoutside,
     movedialog
@@ -57,7 +49,7 @@ export default {
     },
     mainstyle: {
       type: String,
-      default: 'larger'
+      default: "larger"
     },
     showtype: {
       type: Object,
@@ -79,11 +71,11 @@ export default {
   },
   data() {
     return {
-      isfull: ''
+      isfull: ""
     };
   },
   watch: {
-    show: function (val) {
+    show: function(val) {
       if (this.showtype.type && val) {
         if (this.appendchildtobody) {
           document.body.appendChild(this.$el);
@@ -104,7 +96,7 @@ export default {
   },
   methods: {
     clickisfull(e) {
-      this.isfull = e
+      this.isfull = e;
     },
     clickout() {
       if (this.clickouthide) {
@@ -117,13 +109,15 @@ export default {
     },
     async hideclick(event) {
       await this.beforeclose();
-      this.$emit('update:show', false);
+      this.$emit("update:show", false);
     },
     beforeclose() {
-      return Promise.resolve((() => {
-        // alert('这是关闭弹窗前的回调');
-        this.$emit('beforeclose');
-      })());
+      return Promise.resolve(
+        (() => {
+          // alert('这是关闭弹窗前的回调');
+          this.$emit("beforeclose");
+        })()
+      );
     },
     closedialog() {
       this.hideclick();
@@ -140,26 +134,31 @@ export default {
     @include positionre;
   }
   .pop-upLayer {
-    background-color: #f9fbfd;
+    background-color: #ffffff;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     @include postionab;
     box-shadow: 10px 5px 15px rgb(61, 52, 52);
     .pop-upLayerHeader {
-      flex: 1;
+      height: 42px;
+      line-height: 42px;
     }
     .pop-upLayerMAIN {
       flex: 8;
-      border-bottom: 2px dashed #676597;
-      border-top: 2px solid #676597;
+      // background-color: #f9fbfd;
+      // border-bottom: 2px dashed #676597;
+      // border-top: 2px solid #676597;
       overflow: auto;
-      margin: 0 20px;
-      padding: 10px;
+      padding: 10px 20px;
+      &::-webkit-scrollbar {
+        width: 0 !important;
+      }
     }
     .pop-upLayerfooter {
       flex: 0.3;
+      padding: 10px 20px;
     }
   }
 }

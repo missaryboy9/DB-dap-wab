@@ -17,34 +17,19 @@
           :show-overflow-tooltip="true"
         ></el-table-column>
       </template>
-      <el-table-column
-        align="center"
-        label="操作"
-        class-name="tableclumstyles"
-        width="300px"
-      >
+      <el-table-column align="center" label="操作" class-name="tableclumstyles" width="300px">
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            circle
-            icon="el-icon-edit"
-            @click="edit"
-          ></el-button>
-          <el-button
-            size="mini"
-            circle
-            icon="el-icon-delete"
-            @click="del(scope)"
-          ></el-button>
+          <el-button size="mini" circle icon="el-icon-edit" @click="edit"></el-button>
+          <el-button size="mini" circle icon="el-icon-delete" @click="del(scope)"></el-button>
         </template>
       </el-table-column>
     </el-table>
-    <Glb-diadlog
-      :show.sync="show"
-      titlename="编辑应用"
-    >
-      <fromdata @closetag="closetag">
-      </fromdata>
+    <Glb-diadlog :show.sync="show" titlename="编辑应用">
+      <fromdata @closetag="closetag"></fromdata>
+      <div slot="footer" class="slotf">
+        <el-button type="primary" @click="onSubmit" size="mini">立即创建</el-button>
+        <el-button @click="close" size="mini">取消</el-button>
+      </div>
     </Glb-diadlog>
     <el-row align="bottom">
       <el-col :span="24">
@@ -52,8 +37,7 @@
           :current-page.sync="currentPage"
           :articles-per-page="pageSize"
           :totaldate="tableData.length"
-        >
-        </glb-pagination>
+        ></glb-pagination>
       </el-col>
     </el-row>
     <div>
@@ -64,44 +48,21 @@
         :append-to-body="true"
         custom-class="customwidth"
       >
-        <el-form
-          ref="form"
-          :model="sizeForm"
-          label-width="auto"
-          size="mini"
-        >
+        <el-form ref="form" :model="sizeForm" label-width="auto" size="mini">
           <el-row class="showrow">
-            <el-col
-              :offset="1"
-              :span="20"
-            >
+            <el-col :offset="1" :span="20">
               <el-form-item label="应用编号">
                 <el-input v-model="sizeForm.Numbering" />
               </el-form-item>
             </el-col>
-            <el-col
-              :offset="1"
-              :span="20"
-            >
+            <el-col :offset="1" :span="20">
               <el-form-item label="应用名称">
-                <el-input
-                  v-model="sizeForm.name"
-                  type="textarea"
-                />
+                <el-input v-model="sizeForm.name" type="textarea" />
               </el-form-item>
             </el-col>
-            <el-col
-              :offset="12"
-              style="margin-top:20px"
-            >
-              <el-button
-                type="primary"
-                size="mini"
-              >保存</el-button>
-              <el-button
-                type="danger"
-                size="mini"
-              >退出</el-button>
+            <el-col :offset="12" style="margin-top:20px">
+              <el-button type="primary" size="mini">保存</el-button>
+              <el-button type="danger" size="mini">退出</el-button>
             </el-col>
           </el-row>
         </el-form>
@@ -166,33 +127,45 @@ export default {
     businessName: 'PLUGIN_CHECK'
    */
   mounted() {
-    this.$bus.$on('addtablelist', (e) => {
-      let { applicationfrom } = e
+    this.$bus.$on("addtablelist", e => {
+      let { applicationfrom } = e;
       this.tableData.push({
-        date: '内置2',
+        date: "内置2",
         name: applicationfrom.number,
         address: applicationfrom.acse,
-        businessName: 'PLUGIN_CHECK'
-      })
-    })
+        businessName: "PLUGIN_CHECK"
+      });
+    });
   },
   beforeDestroy() {
-    this.$bus.$off('addtablelist')
+    this.$bus.$off("addtablelist");
   },
   methods: {
     closetag() {
-      this.show = false
+      this.show = false;
+    },
+    close() {
+      this.show = false;
+    },
+    onSubmit() {
+      this.$message({
+        message: "创建成功！",
+        type: "success"
+      });
+      setTimeout(() => {
+        this.show = false;
+      }, 2000);
     },
     handleClose() {
       this.dialogVisible = false;
     },
     headerCellStyle({ row, column, rowIndex, columnIndex }) {
       if (rowIndex === 0) {
-        return 'background-color: #eaedf6;'
+        return "background-color: #eaedf6;";
       }
     },
-    handleSizeChange() { },
-    handleCurrentChange() { },
+    handleSizeChange() {},
+    handleCurrentChange() {},
     edit() {
       this.show = true;
     },
@@ -203,7 +176,7 @@ export default {
         type: "warning"
       })
         .then(() => {
-          this.tableData.splice(scope.$index, 1)
+          this.tableData.splice(scope.$index, 1);
           this.$message({
             type: "success",
             message: "删除成功!"
@@ -242,5 +215,9 @@ export default {
 .el-table__body td {
   padding: 0;
   height: 34px;
+}
+.slotf{
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

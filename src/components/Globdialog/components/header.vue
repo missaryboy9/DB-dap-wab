@@ -1,30 +1,21 @@
 <template>
   <div class="headermain">
     <p>{{ $attrs.titlename }}</p>
-    <div
-      class="iconzoom"
-      @click="zoom"
-    >
+    <div class="iconzoom" @click="zoom">
       <span>{{ Isfull? '\ue60e':'\ue60f' }}</span>
     </div>
-    <div
-      class="iconclose"
-      @click="hidedia"
-    >
-      <div class="icon" />
+    <div class="iconclose" @click="hidedia">
+      <!-- <div class="icon" /> -->
+      <span class="el-icon-close"></span>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 export default {
-  components: {
-
-  },
+  components: {},
   inheritAttrs: false,
-  props: {
-
-  },
+  props: {},
   data() {
     return {
       Isfull: false
@@ -32,11 +23,11 @@ export default {
   },
   methods: {
     hidedia() {
-      this.$emit('closedialog');
+      this.$emit("closedialog");
     },
     zoom() {
-      this.Isfull = !this.Isfull
-      this.$emit('isfull', this.Isfull)
+      this.Isfull = !this.Isfull;
+      this.$emit("isfull", this.Isfull);
     }
   }
 };
@@ -52,11 +43,11 @@ export default {
   height: 100%;
   padding: 0 20px;
   font-family: glbfonticon;
-
+  background-color: #f4f1f2;
   p {
     margin: 0;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 5px;
     flex: 2;
   }
@@ -66,8 +57,8 @@ export default {
     transition: 0.5s box-shadow ease;
     border-radius: 5px;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 16px;
+    height: 16px;
     display: flex;
     flex: 1;
     flex: 0 0 auto;
@@ -75,7 +66,7 @@ export default {
     justify-content: center;
     margin-right: 10px;
     span {
-      font-size: 23px;
+      font-size: 12px;
       color: #fff;
     }
     &:hover {
@@ -83,18 +74,26 @@ export default {
     }
   }
   .iconclose {
-    display: block;
+    width: 16px;
+    height: 16px;
+    display: flex;
     background-color: #080367;
     box-shadow: 3px 3px 10px #000;
     transition: 0.5s box-shadow ease;
     border-radius: 5px;
     cursor: pointer;
-
     flex: 1;
     flex: 0 0 auto;
-
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    span {
+      font-size: 14px;
+      font-weight: 900;
+      color: #fff;
+    }
     .icon {
-      @include spanicon(30px, 30px);
+      @include spanicon(16px, 16px);
     }
   }
   .iconclose:hover {

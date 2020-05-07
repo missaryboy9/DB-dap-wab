@@ -8,6 +8,7 @@
             :filter-method="filterMethod"
             filter-placeholder="请输入城市拼音"
             v-model="value"
+            :titles="['Source', 'Target']"
             :data="data"
           ></el-transfer>
         </el-tab-pane>
@@ -106,12 +107,12 @@ export default {
           title: "多选表格"
         },
         {
-          name: "CustomTemplate",
-          title: "自定义模版"
-        },
-        {
           name: "TreeTable",
           title: "树表格"
+        },
+        {
+          name: "CustomTemplate",
+          title: "自定义模版"
         }
       ]
     };
@@ -146,43 +147,50 @@ export default {
 
 <style scoped lang="scss">
 @import "@/styles/mixin.scss";
-.main {
+.myclass {
+  /deep/ .el-transfer-panel__header {
+    background: #eaedf4;
+  }
+  /deep/ .el-transfer {
+    padding: 30px;
+  }
+  /deep/ .el-transfer-panel__body {
+    height: 500px;
+  }
+  /deep/ .el-transfer-panel__list.is-filterable {
+    height: 400px;
+  }
+  /deep/ .el-alert {
+    margin: 15px 0;
+  }
+  /deep/ .el-tabs__content {
+    height: 100%;
+    overflow: auto;
+  }
+  /deep/ .el-tabs__content::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  /deep/ .el-transfer-panel {
+    border-radius: 8px;
+  }
 }
-.myclass /deep/ .el-transfer-panel__header {
-  background: #080367;
-}
-.myclass /deep/ .el-transfer {
-  padding: 30px;
-}
-.myclass
-  >>> .el-transfer-panel
-  .el-transfer-panel__header
-  .el-checkbox
-  .el-checkbox__label {
-  color: white;
-}
-.myclass
-  >>> .el-transfer-panel
-  .el-transfer-panel__header
-  .el-checkbox
-  .el-checkbox__label
-  span {
-  color: white;
-}
-.myclass /deep/ .el-transfer-panel__body {
-  height: 500px;
-}
-.myclass /deep/ .el-transfer-panel__list.is-filterable {
-  height: 400px;
-}
-.myclass /deep/ .el-alert {
-  margin: 15px 0;
-}
-.myclass /deep/ .el-tabs__content {
-  height: 100%;
-  overflow: auto;
-}
-.myclass /deep/ .el-tabs__content::-webkit-scrollbar {
-  width: 0 !important;
+.myclass {
+  /deep/
+    .el-transfer-panel
+    .el-transfer-panel__header
+    .el-checkbox
+    .el-checkbox__label {
+    font-size: 14px;
+  }
+  /deep/ .el-transfer-panel .el-transfer-panel__header .el-checkbox {
+    line-height: 30px;
+  }
+  /deep/ .el-transfer-panel .el-transfer-panel__header {
+    height: 30px;
+    line-height: 30px;
+  }
+  /deep/ .el-button {
+    padding: 7px 15px;
+  }
 }
 </style>

@@ -190,7 +190,7 @@ export default {
             this.loading = true;
             this.$addrouter(res.data);
             this.$router.push({
-              path: "/applicationManagement/applicationManagement"
+              path: "/homePage/homePage"
             });
           });
           this.$store
