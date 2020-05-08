@@ -113,6 +113,23 @@ function hasOwn(val, i) {
     })
 
     i18n.install = (Vue) => {
+      // Vue.mixins({
+      //   data() {
+      //     return {
+
+      //     }
+      //   },
+      //   watch: {
+      //     local() {
+
+      //     }
+      //   },
+      //   computed: {
+      //   local() {
+      //   return store.state.local
+      //   }
+      //   }
+      // })
       Object.defineProperty(Vue.prototype, '$t', {
         get() {
           return (key) => {
