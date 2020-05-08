@@ -35,18 +35,14 @@
           </el-row>
         </el-tab-pane>
         <el-tab-pane label="提示展示">
-          <el-divider>
-            <i class="el-icon-mobile-phone"></i>
-          </el-divider>
+          <el-divider content-position="left">点击提示</el-divider>
           <el-row>
             <el-button :plain="true" @click="open2" size="mini">成功</el-button>
             <el-button :plain="true" @click="open3" size="mini">警告</el-button>
             <el-button :plain="true" @click="open1" size="mini">消息</el-button>
             <el-button :plain="true" @click="open4" size="mini">错误</el-button>
           </el-row>
-          <el-divider>
-            <i class="el-icon-mobile-phone"></i>
-          </el-divider>
+          <el-divider content-position="left">划过提示</el-divider>
           <el-row>
             <el-tooltip content="Top center" placement="top">
               <el-button size="mini">Dark</el-button>
@@ -55,9 +51,7 @@
               <el-button size="mini">Light</el-button>
             </el-tooltip>
           </el-row>
-          <el-divider>
-            <i class="el-icon-mobile-phone"></i>
-          </el-divider>
+          <el-divider content-position="left">弹框提示</el-divider>
           <el-row>
             <el-alert
               title="成功提示的文案"
@@ -190,9 +184,14 @@ export default {
   }
   /deep/ .el-transfer-panel__body {
     height: 500px;
+    overflow: auto;
+  }
+  /deep/ .el-transfer-panel__item.el-checkbox .el-checkbox__label {
+    overflow: inherit;
   }
   /deep/ .el-transfer-panel__list.is-filterable {
     height: 400px;
+    overflow: auto;
   }
   /deep/ .el-alert {
     margin: 15px 0;
