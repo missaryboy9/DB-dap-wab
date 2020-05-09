@@ -52,7 +52,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.myclass /deep/ .el-collapse-item__header{
+.myclass {
+  /deep/ .el-collapse-item__header {
     padding-left: 20px;
+  }
+  /deep/ .el-collapse-item__content{
+    padding:0 20px;
+  }
 }
 </style>

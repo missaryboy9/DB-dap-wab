@@ -2,7 +2,7 @@
   <div class="filtermain">
     <el-table
       v-loading="loading"
-      :data="tableData"
+      :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
       :row-class-name="tableRowClassName"
       style="margin-bottom:10px;border:1px solid #eaedf6;"
       :header-cell-style="headerCellStyle"
@@ -176,6 +176,11 @@ export default {
     address: '非空校验',
     businessName: 'PLUGIN_CHECK'
    */
+
+  created(){
+    console.log(tabledata);
+    
+  },
   mounted() {
     this.$bus.$on("addtablelist", e => {
       let { applicationfrom } = e;
