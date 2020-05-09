@@ -1,7 +1,7 @@
 
 import Mock from 'mockjs'
 let template = {
-  "list|10": [
+  "list|20": [
     {
       date: '@increment()',
       name: '@tld()',
