@@ -27,11 +27,8 @@
         width="300px"
       >
         <template slot-scope="scope">
-          <table-btn
-            :row="scope"
-            :table-list.sync="tableData"
-            :show.sync="show"
-          ></table-btn>
+          <el-button type="primary" class="tabBtn" plain icon="el-icon-edit" size="mini" @click="edit"></el-button>
+          <el-button type="danger" class="tabBtn" plain icon="el-icon-delete" size="mini" @click="del(scope)"></el-button>
         </template>
       </el-table-column>
     </el-table>
