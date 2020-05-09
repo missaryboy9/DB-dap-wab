@@ -6,7 +6,7 @@
           <div class="header">
             <h2>Hello,李婧茹！👋</h2>
             <div class="date">
-              <b>{{new Date().toLocaleDateString()}}</b>
+              <b>{{ new Date().toLocaleDateString() }}</b>
               <i class="el-icon-date" style="margin-right:4px"></i>
             </div>
           </div>
@@ -15,9 +15,9 @@
             <dv-border-box-8 :reverse="true" :color="['#ebebec', '#080367']" dur="10">
               <div class="componts">
                 <el-row :gutter="12" style="padding:0 10px">
-                  <el-col :span="24/route.length" v-for="item in route" :key="item.name">
+                  <el-col v-for="item in route" :key="item.name" :span="24/route.length">
                     <div @click="topath(item)">
-                      <el-card shadow="hover">{{item.children[0].name}}</el-card>
+                      <el-card shadow="hover">{{ item.children[0].name }}</el-card>
                     </div>
                   </el-col>
                 </el-row>

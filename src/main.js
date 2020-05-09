@@ -15,7 +15,6 @@ import initecharts from "./common/js/initecarts";
 import search from "./components/search/search.js";
 import glbcomponent from "./components/glbindex.js";
 import bus from '@/common/js/bus.js'
-import tableButton from "./components/tableBtn/tableBtn.js";
 // import 'lib-flexible';
 import "@/icons"; // icon
 // import '@/permission' // permission control
@@ -43,7 +42,6 @@ Vue.use(ElementUI, { locale });
 Vue.use(addrouter, { router, store });
 Vue.use(initecharts);
 Vue.use(search);
-Vue.use(tableButton);
 Vue.use(glbcomponent);
 Vue.use(bus);
 Vue.config.productionTip = false;

@@ -24,7 +24,8 @@
           width="300px"
         >
           <template slot-scope="scope">
-            <table-btn :row="scope" :table-list.sync="tableData" :show.sync="dialogVisible"></table-btn>
+            <el-button type="primary" plain icon="el-icon-edit" size="mini" class="tabBtn" @click="edit"></el-button>
+            <el-button type="danger" plain icon="el-icon-delete" size="mini" class="tabBtn" @click="del(scope)"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -140,6 +141,29 @@ export default {
     };
   },
   methods: {
+    edit() {
+      this.dialogVisible = true;
+    },
+    del(scope) {
+      this.$confirm("将删除该条数据, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.tableData.splice(scope.$index, 1);
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+    },
     handleClose() {
       this.dialogVisible = false;
     },

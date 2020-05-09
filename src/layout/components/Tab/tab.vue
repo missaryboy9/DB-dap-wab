@@ -35,11 +35,8 @@
   <!--</div>-->
 <!--</template>-->
 <template>
-  <el-tabs v-model="tab"  @tab-click="openPath" closable class="nav-tab">
-    <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
-    <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+  <el-tabs v-model="activeName"   @tab-click="handleClick" class="nav-tab" @tab-remove=closePath >
+    <el-tab-pane :label="item.label" :name="item.path" :closable="item.closable" v-for="item in items" ref="tag">{{ item.label }}</el-tab-pane>
   </el-tabs>
 </template>
 
@@ -51,13 +48,15 @@ export default {
         {
            label: '首页',
            closable: false,
-           path: '/'
+           path: '/homePage/homePage',
+
         }
       ],
       activeStyle: { // 激活的tag状态
         backgroundColor: '#080367',
         color: '#fff'
       },
+      activeName: '/homePage/homePage',
       isfiexde: true,
       isIcon: false,
       addWidth: 200 // 要给滑块增加的宽度
@@ -76,13 +75,15 @@ export default {
         closable: true,
         path: to.fullPath
       })
-      // 实现显示滑块按钮功能
-        var parentWidth = this.$refs.tab.offsetWidth
-        var sonWidth = this.$refs.content.offsetWidth + this.addWidth
-        if (sonWidth > parentWidth) {
-           this.isIcon = true
-           this.$refs.content.style.left = 25 + 'px'
-        }
+      console.log({flag})
+      this.activeName=to.fullPath
+//      // 实现显示滑块按钮功能
+//        var parentWidth = this.$refs.tab.offsetWidth
+//        var sonWidth = this.$refs.content.offsetWidth + this.addWidth
+//        if (sonWidth > parentWidth) {
+//           this.isIcon = true
+//           this.$refs.content.style.left = 25 + 'px'
+//        }
     }
   },
   created() {
@@ -98,6 +99,7 @@ export default {
          path: this.$route.fullPath
      })
       this.items = tabList
+      this.activeName=this.$route.fullPath
      }
   },
   mounted() {
@@ -108,51 +110,74 @@ export default {
     })
   },
   methods: {
-    // 关闭单个tab时
-    closePath(info) {
-      // 获取到name之后与items中的项的label做对比，并找到相同的返回当前项的index,进行删除
-      var name = info.label
-      var index = this.items.findIndex((item) => item.label === name)
-      this.items.splice(index, 1)
-      //  如果当前tab是激活状态显示当前路由的前一个路由，当tab不能是最后一个
-      if (this.$refs.tag[index].$el.style.backgroundColor === "rgb(8, 3, 103)") {
-         this.$router.push(this.items[ index - 1 ].path)
-      }
-        console.log(this.addWidth);
-        // 实现隐藏滑块按钮功能
-        console.log(this.$refs.content.offsetWidth);
-        var parentWidth = this.$refs.tab.offsetWidth
-        var sonWidth = this.$refs.content.offsetWidth - this.$refs.tag.length
-        console.log(parentWidth);
-        console.log(sonWidth);
-        if (sonWidth < parentWidth) {
-           this.isIcon = false
-           this.$refs.content.style.left = 0 + 'px'
-        }
+    handleClick(tab, event) {
+      console.log({tab, event});
+      this.$router.push(tab.name)
     },
-    // 点击tab跳到相应的路由
-    openPath(info) {
-//      this.$router.push(info.path)
-    },
-    rightMove() {
-      var parentWidth = this.$refs.tab.parentNode.offsetWidth
-      var sonWidth = this.$refs.content.offsetWidth + 25
-      // 计算停止向左滚动距离
-      var stepEnd = this.$refs.tag.length * 3 + (sonWidth - parentWidth)
-      var leftMovelength = Math.abs(this.$refs.content.offsetLeft)
-      if (sonWidth > parentWidth && leftMovelength < stepEnd) {
-        var length = this.$refs.content.offsetLeft
-        this.$refs.content.style.left = length - 10 + "px"
-      }
-    },
-    leftMove() {
-      console.log(this.$refs.content.offsetLeft);
-      // // 计算停止向右滚动距离
-      if (this.$refs.content.offsetLeft < 24) {
-        var length = this.$refs.content.offsetLeft
-        this.$refs.content.style.left = length + 10 + "px"
-      }
+    closePath(tag){
+      console.log({tag})
+        let tabs = this.items;
+        let activeName = this.activeName;
+          tabs.forEach((tab, index) => {
+            if (tab.path === tag) {
+              let nextTab = tabs[index + 1] || tabs[index - 1];
+              if (nextTab) {
+                activeName = nextTab.path;
+
+              }
+            }
+          });
+        this.activeName = activeName;
+        this.items = tabs.filter(tab => tab.path !== tag);
+        this.$router.push(activeName)
+
+
     }
+    // 关闭单个tab时
+//    closePath(info) {
+//      // 获取到name之后与items中的项的label做对比，并找到相同的返回当前项的index,进行删除
+//      var name = info.label
+//      var index = this.items.findIndex((item) => item.label === name)
+//      this.items.splice(index, 1)
+//      //  如果当前tab是激活状态显示当前路由的前一个路由，当tab不能是最后一个
+//      if (this.$refs.tag[index].$el.style.backgroundColor === "rgb(8, 3, 103)") {
+//         this.$router.push(this.items[ index - 1 ].path)
+//      }
+//        console.log(this.addWidth);
+//        // 实现隐藏滑块按钮功能
+//        console.log(this.$refs.content.offsetWidth);
+//        var parentWidth = this.$refs.tab.offsetWidth
+//        var sonWidth = this.$refs.content.offsetWidth - this.$refs.tag.length
+//        console.log(parentWidth);
+//        console.log(sonWidth);
+//        if (sonWidth < parentWidth) {
+//           this.isIcon = false
+//           this.$refs.content.style.left = 0 + 'px'
+//        }
+//    },
+    // 点击tab跳到相应的路由
+//    openPath(info) {
+////      this.$router.push(info.path)
+//    },
+//    rightMove() {
+//      var parentWidth = this.$refs.tab.parentNode.offsetWidth
+//      var sonWidth = this.$refs.content.offsetWidth + 25
+//      // 计算停止向左滚动距离
+//      var stepEnd = this.$refs.tag.length * 3 + (sonWidth - parentWidth)
+//      var leftMovelength = Math.abs(this.$refs.content.offsetLeft)
+//      if (sonWidth > parentWidth && leftMovelength < stepEnd) {
+//        var length = this.$refs.content.offsetLeft
+//        this.$refs.content.style.left = length - 10 + "px"
+//      }
+//    },
+//    leftMove() {
+//      console.log(this.$refs.content.offsetLeft);
+//      // // 计算停止向右滚动距离
+//      if (this.$refs.content.offsetLeft < 24) {
+//        var length = this.$refs.content.offsetLeft
+//        this.$refs.content.style.left = length + 10 + "px"
+//      }
+//    }
   }
 }
 </script>
