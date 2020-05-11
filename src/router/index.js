@@ -60,6 +60,16 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: "/null",
+    component: () => import("@/views/errorPage/nullPage"),
+    hidden: true
+   },
+   {
+    path: "/500",
+    component: () => import("@/views/errorPage/500"),
+    hidden: true
+   },
+  {
     path: "/example",
     hidden: true,
     component: Layout,

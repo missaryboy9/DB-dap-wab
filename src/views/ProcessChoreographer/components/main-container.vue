@@ -36,6 +36,7 @@
           :current-page.sync="currentPage1"
           :page-size="100"
           layout="total, sizes, prev, pager, next, jumper"
+          :small="true"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         />
