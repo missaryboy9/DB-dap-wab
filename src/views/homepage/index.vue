@@ -4,7 +4,7 @@
       <el-col :xs="20" :sm="20" :md="20" :lg="20" :xl="20">
         <div class="grid-content">
           <div class="header">
-            <h2>Hello,李婧茹！👋</h2>
+            <h2>Hello,{{username}}！👋</h2>
             <div class="date">
               <b>{{ new Date().toLocaleDateString() }}</b>
               <i class="el-icon-date" style="margin-right:4px"></i>
@@ -59,13 +59,18 @@ export default {
           name: "timeline"
         }
       ],
-      route: []
+      route: [],
+      username:''
     };
   },
   created() {
     homepath.then(res => {
       this.route = res.data;
     });
+    this.username = this.$store.state.user.name
+    if(this.username==""){
+      this.username = "李静如"
+    }
   },
   methods: {
     topath(e) {
