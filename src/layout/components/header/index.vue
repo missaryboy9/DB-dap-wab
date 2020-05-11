@@ -88,7 +88,7 @@
 
             </div>
             <div>
-              <p>{{ staffIntroduction.authorname }}</p>
+              <p>{{username}}</p>
               <p>{{ staffIntroduction.inAJob }}</p>
             </div>
           </div>
@@ -136,6 +136,7 @@ export default {
         authorname: '张博文',
         inAJob: '前端开发部门'
       },
+      username:'',
       themelist: [
         {
           src: 'theme.png',
@@ -177,6 +178,12 @@ export default {
         });
         this.input = e.substr(0, 20);
       }
+    }
+  },
+  mounted(){
+    this.username = this.$store.state.user.name
+    if(this.username==""){
+      this.username = this.staffIntroduction.authorname
     }
   },
   methods: {

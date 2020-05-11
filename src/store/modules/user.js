@@ -38,7 +38,9 @@ const actions = {
         });
     });
   },
-
+  userInfo({commit,state}){
+    commit('SET_NAME',state.name)
+  },
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {

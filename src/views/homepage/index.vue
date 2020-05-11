@@ -4,7 +4,7 @@
       <el-col :xs="20" :sm="20" :md="20" :lg="20" :xl="20">
         <div class="grid-content">
           <div class="header">
-            <h2>Hello,李婧茹！👋</h2>
+            <h2>Hello,{{username}}！👋</h2>
             <div class="date">
               <b>{{ new Date().toLocaleDateString() }}</b>
               <i class="el-icon-date" style="margin-right:4px"></i>
@@ -12,7 +12,7 @@
           </div>
           <div class="main">
             <el-divider content-position="left">平台组件</el-divider>
-            <dv-border-box-8 :reverse="true" :color="['#ebebec', '#080367']" dur="10">
+            <dv-border-box-8 :reverse="true" :color="['#ebebec', '#080367']" :dur="10">
               <div class="componts">
                 <el-row :gutter="12" style="padding:0 10px">
                   <el-col v-for="item in route" :key="item.name" :span="24/route.length">
@@ -59,13 +59,18 @@ export default {
           name: "timeline"
         }
       ],
-      route: []
+      route: [],
+      username:''
     };
   },
   created() {
     homepath.then(res => {
       this.route = res.data;
     });
+    this.username = this.$store.state.user.name
+    if(this.username==""){
+      this.username = "李静如"
+    }
   },
   methods: {
     topath(e) {
