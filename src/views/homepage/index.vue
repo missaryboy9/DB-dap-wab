@@ -12,7 +12,7 @@
           </div>
           <div class="main">
             <el-divider content-position="left">平台组件</el-divider>
-            <dv-border-box-8 :reverse="true" :color="['#ebebec', '#080367']" dur="10">
+            <dv-border-box-8 :reverse="true" :color="['#ebebec', '#080367']" :dur="10">
               <div class="componts">
                 <el-row :gutter="12" style="padding:0 10px">
                   <el-col v-for="item in route" :key="item.name" :span="24/route.length">
