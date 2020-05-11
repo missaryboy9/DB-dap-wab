@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="item">
     <div
       v-if="!item.hidden"
       class="menu-wrapper"
+      @click="info"
     >
       <template
         v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
@@ -117,7 +118,15 @@ export default {
         return this.basePath;
       }
       return path.resolve(this.basePath, routePath);
+    },
+    info() {
+      console.log("hhh")
+       console.log(this.$refs.subMenu.$el)
+      console.log(this.$refs.subMenu.$el.getAttribute("class"))
     }
   }
 };
 </script>
+<style lang="scss" scoped>
+
+</style>
