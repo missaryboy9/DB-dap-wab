@@ -1,17 +1,28 @@
 <template>
   <div class="main">
-    <div v-for="item in modulelist">
-      <component :is="item.name" />
-    </div>
+    <el-card>
+      <div class="app-container">
+        <upload-excel-component :on-success="handleSuccess" :before-upload="beforeUpload" />
+        <el-table
+          :data="tableData"
+          border
+          highlight-current-row
+          size="mini"
+          style="width: 100%;margin-top:20px;"
+        >
+          <el-table-column v-for="item of tableHeader" :key="item" :prop="item" :label="item" />
+        </el-table>
+      </div>
+    </el-card>
   </div>
 </template>
 
-<script type="text/ecmascript-6">
-import { filtertop, filtermain, newapplication } from '../../components';
+<script>
+import UploadExcelComponent from "@/components/UploadExcel/index.vue";
+
 export default {
-  components: {
-    filtertop, filtermain, newapplication
-  },
+  name: "UploadExcel",
+  components: { UploadExcelComponent },
   data() {
     return {
       modulelist: [
@@ -21,21 +32,35 @@ export default {
           getemit: ''
         }
       ]
+      tableData: [],
+      tableHeader: []
     };
   },
-  mounted() {
-    // console.log(go, '11111111111111111');
-
-  },
   methods: {
+    beforeUpload(file) {
+      const isLt1M = file.size / 1024 / 1024 < 1;
 
+      if (isLt1M) {
+        return true;
+      }
+
+      this.$message({
+        message: "Please do not upload files larger than 1m in size.",
+        type: "warning"
+      });
+      return false;
+    },
+    handleSuccess({ results, header }) {
+      this.tableData = results;
+      this.tableHeader = header;
+    }
   }
 };
 </script>
 
+
 <style scoped lang="scss">
-@import "@/styles/mixin.scss";
-.main {
-  @include innerpadding(15px);
+.app-container {
+  height: 80vh;
 }
 </style>
