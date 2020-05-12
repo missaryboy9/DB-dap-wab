@@ -16,11 +16,6 @@ export default {
     return {
       modulelist: [
         {
-          name: 'filtertop',
-          sendpropos: '',
-          getemit: ''
-        },
-        {
           name: 'filtermain',
           sendpropos: '',
           getemit: ''

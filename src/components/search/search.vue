@@ -9,7 +9,7 @@
           <!-- 显示的表单 -->
           <el-form-item v-for="item in showform" v-if="!expandID" :key="item.lable" :label="item.label">
             <!-- 输入框 -->
-            <el-input v-if="item.type==='Input'" v-model="selectShowdata[item.prop]" placeholder="请输入要查询的条件"></el-input>
+            <el-input v-if="item.type==='Input'" v-model="selectShowdata[item.prop]" :placeholder="item.placeholder"></el-input>
             <!-- 下拉框 -->
             <el-select v-if="item.type==='Select'" v-model="selectShowdata[item.prop]" size="mini" @change="item.change(selectShowdata[item.prop])">
               <el-option v-for="op in item.options" :key="op.value" :label="op.label" :value="op.value"></el-option>
@@ -83,21 +83,36 @@ export default {
    'showdata': {
         type: Object,
         default: () => {}
+    },
+    "tabData": {
+       type: Array,
+       default: () => []
     }
    },
     data() {
       return {
         expandID: false, // 显示与隐藏筛选表单
         selectShowdata: this.showdata,
-        selectHandledata: this.handledata
+        // selectHandledata: this.handledata
+        tabledate: this.tabData
       };
     },
     created() {
+
     },
     methods: {
       // 查询表单
       queryInfo() {
-        console.log(this.selectShowdata);
+        console.log(this.selectShowdata.type)
+        var type = this.selectShowdata.type
+        var result = this.tabledate.filter((item) => {
+            return item["name"] === type
+        })
+        if (result.length !== 0) {
+          this.$emit("update:tabData", [...result])
+        } else {
+          this.$emit("update:tabData", this.tabledate)
+        }
       },
       // 重置表单
       reset() {

@@ -3,7 +3,6 @@
     <div
       v-if="!item.hidden"
       class="menu-wrapper"
-      @click="info"
     >
       <template
         v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
@@ -46,6 +45,7 @@
           :item="child"
           :base-path="resolvePath(child.path)"
           class="nest-menu"
+          @click="info"
         />
       </el-submenu>
     </div>
