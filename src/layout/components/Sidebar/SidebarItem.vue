@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="item">
     <div
       v-if="!item.hidden"
       class="menu-wrapper"
@@ -45,6 +45,7 @@
           :item="child"
           :base-path="resolvePath(child.path)"
           class="nest-menu"
+          @click="info"
         />
       </el-submenu>
     </div>
@@ -117,7 +118,15 @@ export default {
         return this.basePath;
       }
       return path.resolve(this.basePath, routePath);
+    },
+    info() {
+      console.log("hhh")
+       console.log(this.$refs.subMenu.$el)
+      console.log(this.$refs.subMenu.$el.getAttribute("class"))
     }
   }
 };
 </script>
+<style lang="scss" scoped>
+
+</style>

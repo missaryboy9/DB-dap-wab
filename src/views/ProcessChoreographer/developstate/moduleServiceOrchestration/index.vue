@@ -25,7 +25,14 @@ export default {
   components: { UploadExcelComponent },
   data() {
     return {
-      tableData: [],
+      modulelist: [
+        {
+          name: 'filtermain',
+          sendpropos: '',
+          getemit: ''
+        }
+      ],
+      tableData:[],
       tableHeader: []
     };
   },

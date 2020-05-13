@@ -74,6 +74,7 @@
     // menu hover
     .submenu-title-noDropdown,
     .el-submenu__title {
+      // background-color: $menuHover !important;
       &:hover {
         background-color: $menuHover !important;
       }
@@ -87,10 +88,10 @@
     & .nest-menu .el-submenu > .el-submenu__title,
     & .el-submenu .el-menu-item {
       min-width: $sideBarWidth !important;
-      border-radius: 5px;
-      &:hover {
-        border-radius: 5px;
-      }
+      // border-radius: 5px;
+      // &:hover {
+      //   border-radius: 5px;
+      // }
     }
   }
   .hideSidebar {

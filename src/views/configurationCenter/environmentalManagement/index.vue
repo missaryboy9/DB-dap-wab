@@ -1,15 +1,18 @@
 <template>
   <div class="applicationManagement">
     <!--
-      isexpand 区分简单查询和多条件查询 true 显示筛选按钮 , false 不显示筛选按钮
-
+      ishandle 区分简单查询和多条件查询 true 显示筛选按钮 , false 不显示筛选按钮
+      handleform 复杂查询表单
+      showform 简单查询表单
+      handledata 复杂查询表单值
+      showdata  简单查询表单值
      -->
     <el-search
-      :ishandle="true"
+      :ishandle="false"
       :handleform="handleform"
       :showform="showform"
       :handledata="handledata"
-      :showdata="showdata"
+      :showdata.sync="showdata"
     ></el-search>
     <div
       v-for="(item,key) in modulelist"
@@ -31,41 +34,24 @@ export default {
     filtermain
   },
   data() {
-      let sexs = [{ label: '男', value: 'M' }, { label: '女', value: 'F' }]
-      let sexProps = { label: 'label', value: 'value' }
     return {
-      handleform: [
-              { type: 'Input', label: '姓名', prop: 'name', width: '180px', placeholder: '请输入姓名...' },
-              { type: 'Input', label: '年龄', prop: 'age', width: '180px', placeholder: '请输入年龄...' },
-              { type: 'Date', label: '日期', prop: 'date', width: '180px', placeholder: '请选择日期...' },
-              { type: 'Select', label: '性别', prop: 'sex', width: '180px', options: sexs, props: sexProps, change: row => '', placeholder: '请选择性别...' }
-            ],
             showform: [
-              { type: 'Input', label: '姓名', prop: 'name', width: '180px', placeholder: '请输入姓名...' },
-              { type: 'Input', label: '年龄', prop: 'age', width: '180px', placeholder: '请输入年龄...' }
+              { type: 'Input', label: '类型：', prop: 'type', width: '180px', placeholder: '请输入处理器类型...' }
             ],
-            handledata: {
-              name: null,
-              age: null,
-              sex: null,
-              Date: null
-            },
             showdata: {
-              name: null,
-              age: null,
-              sex: null
+              type: null
             },
-      modulelist: [
-        {
-          name: 'newapplication',
-          sendpropos: '',
-          getemit: ''
-        },
-        {
-          name: 'filtermain',
-          sendpropos: '',
-          getemit: ''
-        }
+           modulelist: [
+           {
+               name: 'newapplication',
+               sendpropos: '',
+               getemit: ''
+           },
+          {
+            name: 'filtermain',
+            sendpropos: '',
+            getemit: ''
+          }
       ]
     };
   }

@@ -1,47 +1,58 @@
 <template>
   <div class="filtermain">
-    <el-card>
-      <el-table
-        :data="tableData"
-        border
-        :row-class-name="tableRowClassName"
-        style="margin-bottom:10px"
-        stripe
-      >
-        <template v-for="item in tableclum">
-          <el-table-column
-            align="center"
-            :prop="item.prop"
-            :label="item.label"
-            :width="item.width"
-            :show-overflow-tooltip="true"
-          />
-        </template>
+    <!--
+      ishandle 区分简单查询和多条件查询 true 显示筛选按钮 , false 不显示筛选按钮
+      handleform 复杂查询表单
+      showform 简单查询表单
+      handledata 复杂查询表单值
+      showdata  简单查询表单值
+     -->
+    <el-search
+      :ishandle="false"
+      :showform="showform"
+      :showdata="showdata"
+      :tab-data.sync="tableData"
+    ></el-search>
+    <el-table
+      :data="tableData"
+      border
+      :row-class-name="tableRowClassName"
+      style="margin-bottom:10px"
+      stripe
+    >
+      <template v-for="item in tableclum">
         <el-table-column
           align="center"
-          label="操作"
-          class-name="tableclumstyles"
-          width="300px"
-        >
-          <template slot-scope="scope">
-            <el-button type="primary" plain icon="el-icon-edit" size="mini" class="tabBtn" @click="edit"></el-button>
-            <el-button type="danger" plain icon="el-icon-delete" size="mini" class="tabBtn" @click="del(scope)"></el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <el-row align="bottom">
-        <el-pagination
-          background
-          :total="10000"
-          :current-page.sync="currentPage1"
-          :page-size="100"
-          layout="total, sizes, prev, pager, next, jumper"
-          :small="true"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
+          :prop="item.prop"
+          :label="item.label"
+          :width="item.width"
+          :show-overflow-tooltip="true"
         />
-      </el-row>
-    </el-card>
+      </template>
+      <el-table-column
+        align="center"
+        label="操作"
+        class-name="tableclumstyles"
+        width="300px"
+      >
+        <template slot-scope="scope">
+          <el-button type="primary" plain icon="el-icon-edit" size="mini" class="tabBtn" @click="edit"></el-button>
+          <el-button type="danger" plain icon="el-icon-delete" size="mini" class="tabBtn" @click="del(scope)"></el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <el-row align="bottom">
+      <el-pagination
+        background
+        :total="10000"
+        :current-page.sync="currentPage1"
+        :page-size="100"
+        layout="total, sizes, prev, pager, next, jumper"
+        :small="true"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      />
+    </el-row>
     <div>
       <el-dialog
         title="修改应用"
@@ -109,6 +120,12 @@ export default {
   },
   data() {
     return {
+      showform: [
+              { type: 'Input', label: '类型：', prop: 'type', width: '180px', placeholder: '请输入处理器类型...' }
+      ],
+      showdata: {
+              type: null
+      },
       sizeForm: {
         Numbering: '',
         name: ''
@@ -140,6 +157,8 @@ export default {
       ],
       tableData: tabledata
     };
+  },
+  created() {
   },
   methods: {
     edit() {
@@ -189,8 +208,8 @@ export default {
 .customwidth {
   width: 20rem;
 }
-.el-card {
-  padding:10px 15px ;
+.el-table{
+  margin-top:15px;
 }
 .el-pagination{
   margin-top:10px;
