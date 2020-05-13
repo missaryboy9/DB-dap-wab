@@ -71,7 +71,8 @@ let potconfig = {
     name: name,
     resolve: {
       alias: {
-        "@": resolve("src")
+        "@": resolve("src"),
+        'vendor': path.resolve(__dirname, './src/vendor')
       }
     },
     plugins: [
