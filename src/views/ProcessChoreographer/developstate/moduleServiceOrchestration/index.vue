@@ -32,7 +32,7 @@ export default {
           getemit: ''
         }
       ],
-      tableData:[],
+      tableData: [],
       tableHeader: []
     };
   },
@@ -57,7 +57,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped lang="scss">
 .app-container {

@@ -111,7 +111,7 @@ export default {
         if (result.length !== 0) {
           this.$emit("update:tabData", [...result])
         } else {
-          this.$emit("update:tabData", this.tabledate)
+         this.$message.error("无匹配内容")
         }
       },
       // 重置表单
@@ -119,9 +119,7 @@ export default {
        Object.keys(this.selectShowdata).forEach(item => {
          this.selectShowdata[item] = null
        })
-       Object.keys(this.selectHandledata).forEach(item => {
-         this.selectHandledata[item] = null
-       })
+       this.$emit("update:tabData", this.tabledate)
       },
       // 展开筛选与收缩筛选
       expand() {
