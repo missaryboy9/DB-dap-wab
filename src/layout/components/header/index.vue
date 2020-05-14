@@ -27,85 +27,40 @@
           <img
             style="width:18px;height:18px;transform:translateY(5px)"
             src="@/assets/theme.png"
-            alt=""
-          >
-          <el-dropdown-menu slot="dropdown">
-            <ul class="themedropdown">
-              <li
-                v-for="(item, key) in themelist"
-                :key="key"
-                :style="{
-                  backgroundColor: item.checked === true ? '#dcdcdc' : ''
-                }"
-                @click="checkstyle(item)"
-              >
-                <img
-                  style="width:30px;height:30px"
-                  :src="require('@/assets/' + item.src)"
-                  alt=""
-                >
-                <p>{{ item.name }}</p>
-              </li>
-            </ul>
-          </el-dropdown-menu>
+            alt
+          />
+        <theme-picker/>
         </el-dropdown>
       </div>
       <div>
-        <el-dropdown
-          slot="suffix"
-          trigger="click"
-          placement="bottom-start"
-        >
-          <el-badge
-            is-dot
-            class="item"
-          >
+        <el-dropdown slot="suffix" trigger="click" placement="bottom-start">
+          <el-badge is-dot class="item">
             <i class="el-icon-message-solid topbell" />
           </el-badge>
-          <el-dropdown-menu
-            slot="dropdown"
-            style="padding:0"
-          >
+          <el-dropdown-menu slot="dropdown" style="padding:0">
             <el-dropdown-item v-for="item in detaillist">
               <detaillist :detalis="item" />
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-
       </div>
       <div class="right-menu">
-        <el-dropdown
-          class="avatar-container"
-          trigger="click"
-        >
+        <el-dropdown class="avatar-container" trigger="click">
           <div class="avatar-wrapper">
             <div>
-              <el-avatar
-                shape="circle"
-                size="large"
-                src="../../../assets/avatar.jpg"
-              />
-
+              <el-avatar shape="circle" size="large" src="../../../assets/avatar.jpg" />
             </div>
             <div>
               <p>{{username}}</p>
               <p>{{ staffIntroduction.inAJob }}</p>
             </div>
           </div>
-          <el-dropdown-menu
-            slot="dropdown"
-            class="user-dropdown"
-          >
+          <el-dropdown-menu slot="dropdown" class="user-dropdown">
             <router-link to="/homePage/homePage">
-              <el-dropdown-item>
-                Home
-              </el-dropdown-item>
+              <el-dropdown-item>Home</el-dropdown-item>
             </router-link>
             <el-dropdown-item divided>
-              <span
-                style="display:block;"
-                @click="logout"
-              >Log Out</span>
+              <span style="display:block;" @click="logout">Log Out</span>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -115,57 +70,37 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { Message } from 'element-ui';
-import mixin from './mixin';
-import maindrop from './components/DropDownContainer';
-import detaillist from './components/detailList';
+import { Message } from "element-ui";
+import mixin from "./mixin";
+import maindrop from "./components/DropDownContainer";
+import detaillist from "./components/detailList";
+import ThemePicker from '@/components/ThemePicker'
+
 export default {
   components: {
     maindrop,
-    detaillist
+    detaillist,
+    ThemePicker
   },
-  mixins: [ mixin ],
+  mixins: [mixin],
   data() {
     return {
-      defaultName: '中国电子信息产业集团',
+      defaultName: "中国电子信息产业集团",
       maxlength: 5,
       inputlist: [],
-      input: '',
-      tabPosition: 'left',
+      input: "",
+      tabPosition: "left",
       staffIntroduction: {
-        authorname: '张博文',
-        inAJob: '前端开发部门'
+        authorname: "张博文",
+        inAJob: "前端开发部门"
       },
-      username:'',
-      themelist: [
-        {
-          src: 'theme.png',
-          name: '黑色玄幻主题',
-          checked: false,
-          data: {
-            titlestyle: {
-              backstyle: '#ccc'
-            }
-          }
-        },
-        {
-          src: 'theme.png',
-          name: '白色清爽主题',
-          checked: false,
-          data: {}
-        },
-        {
-          src: 'theme.png',
-          name: '深蓝护眼主题',
-          checked: false,
-          data: {}
-        }
-      ],
+      username: "",
       detaillist: Array(5).fill({
-        image: 'http://p1.music.126.net/ql3nSwy0XKow_HAoZzRZgw==/109951163111196186.jpg?param=640y300',
-        name: 'Ana milk',
-        theme: 'A long sentence expresses details',
-        time: '2019-11-11 21:00'
+        image:
+          "http://p1.music.126.net/ql3nSwy0XKow_HAoZzRZgw==/109951163111196186.jpg?param=640y300",
+        name: "Ana milk",
+        theme: "A long sentence expresses details",
+        time: "2019-11-11 21:00"
       })
     };
   },
@@ -173,23 +108,20 @@ export default {
     input(e) {
       if (e.length > 20) {
         Message({
-          message: '超过长度',
-          type: 'warning'
+          message: "超过长度",
+          type: "warning"
         });
         this.input = e.substr(0, 20);
       }
     }
   },
-  mounted(){
-    this.username = this.$store.state.user.name
-    if(this.username==""){
-      this.username = this.staffIntroduction.authorname
+  mounted() {
+    this.username = this.$store.state.user.name;
+    if (this.username == "") {
+      this.username = this.staffIntroduction.authorname;
     }
   },
   methods: {
-    checkstyle(e) {
-      console.log(e);
-    },
     checknames(e) {
       this.defaultName = e.checkname;
     },
@@ -198,7 +130,7 @@ export default {
       if (this.inputlist.length > this.maxlength) {
         this.inputlist.pop();
       }
-      this.creal('input');
+      this.creal("input");
     }
   }
 };
@@ -443,7 +375,7 @@ export default {
     display: none;
   }
 }
-/deep/ .el-avatar>img{
-  width:100%!important;
+/deep/ .el-avatar > img {
+  width: 100% !important;
 }
 </style>
