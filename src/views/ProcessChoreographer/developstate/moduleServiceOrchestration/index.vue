@@ -31,7 +31,7 @@ export default {
           sendpropos: '',
           getemit: ''
         }
-      ]
+      ],
       tableData: [],
       tableHeader: []
     };
@@ -57,7 +57,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped lang="scss">
 .app-container {

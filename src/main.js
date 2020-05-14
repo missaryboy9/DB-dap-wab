@@ -57,6 +57,9 @@ import 'vxe-table/lib/index.css'
 import './styles/vxe-table.scss'
 Vue.use(VXETable)
 
+// 导入树形表格
+import TreeTable from 'vue-table-with-tree-grid'
+Vue.component('tree-table', TreeTable) // 注册全局组件
 // 给 vue 实例挂载全局窗口对象
 Vue.prototype.$XModal = VXETable.modal
 

@@ -38,6 +38,7 @@
     "uuid": "^7.0.2",
     "vue": "2.6.10",
     "vue-router": "3.0.6",
+    "vue-table-with-tree-grid": "^0.2.4",
     "vue2-tree-view": "^1.0.14",
     "vue2-verify": "^1.1.5",
     "vuex": "3.1.0",
