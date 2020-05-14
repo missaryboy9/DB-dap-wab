@@ -201,7 +201,6 @@ export default {
             .catch(() => {
               this.loading = false;
             });
-          this.$store.dispatch("user/userInfo")
         } else {
           console.log("error submit!!");
           return false;

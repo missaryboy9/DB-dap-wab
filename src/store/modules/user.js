@@ -25,6 +25,8 @@ const actions = {
   // user login
   login({ commit }, userInfo) {
     const { username, password } = userInfo;
+    commit('SET_NAME',username)
+
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password })
         .then(response => {
@@ -37,9 +39,6 @@ const actions = {
           reject(error);
         });
     });
-  },
-  userInfo({commit,state}){
-    commit('SET_NAME',state.name)
   },
   // get user info
   getInfo({ commit, state }) {
