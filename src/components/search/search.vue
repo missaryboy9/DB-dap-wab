@@ -87,7 +87,11 @@ export default {
     "tabData": {
        type: Array,
        default: () => []
-    }
+    },
+    "selName": {
+        type: String,
+        required: true
+     }
    },
     data() {
       return {
@@ -98,18 +102,20 @@ export default {
       };
     },
     created() {
-
     },
     methods: {
       // 查询表单
       queryInfo() {
-        console.log(this.selectShowdata.type)
         var type = this.selectShowdata.type
+        console.log(type)
+        console.log(this.selName)
         var result = this.tabledate.filter((item) => {
-            return item["name"] === type
+            return item[this.selName] === type
         })
+
         if (result.length !== 0) {
           this.$emit("update:tabData", [...result])
+          console.log(this.tabData)
         } else {
          this.$message.error("无匹配内容")
         }

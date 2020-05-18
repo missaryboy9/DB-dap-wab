@@ -1,6 +1,6 @@
 export default [
   {
-    "appId": 39,
+     "appId": 39,
      "appName": "euos",
      "clusterName": "euos_cluster",
      "limitModel": 1,

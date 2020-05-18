@@ -16,7 +16,7 @@ export default {
   },
   methods: {
      goBack() {
-        this.$router.push("/login")
+        window.history.go(-1);
      }
   }
 }

@@ -11,6 +11,8 @@
       :ishandle="false"
       :showform="showform"
       :showdata="showdata"
+      :tab-data.sync="tabledata"
+      sel-name="clusterName"
     ></el-search>
     <el-button type="primary" size="mini"><i class="el-icon-plus"></i>新增配置</el-button>
     <tree-table

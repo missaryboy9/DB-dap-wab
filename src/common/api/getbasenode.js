@@ -1,4 +1,4 @@
 import { post } from '../js/axios'
 
-exports.getnodes = params => post('/user/login', params)
+exports.getnodes = params => post('/add', params)
 

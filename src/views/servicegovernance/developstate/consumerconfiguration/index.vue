@@ -1,46 +1,41 @@
 <template>
-  <div class="main">
-    <div v-for="item in modulelist">
-      <component :is="item.name" />
-    </div>
+  <div>
+    <el-card>
+      <span class="icon">测试缺省页</span>
+      <el-button type="success" plain @click="error">测试</el-button>
+    </el-card>
   </div>
 </template>
-
 <script type="text/ecmascript-6">
-import { filtertop, filtermain, newapplication } from '../../components';
+import data from "../data.js"
 export default {
-  components: {
-    filtertop, filtermain, newapplication
-  },
   data() {
     return {
-      modulelist: [
-        {
-          name: 'filtertop',
-          sendpropos: '',
-          getemit: ''
-        },
-        {
-          name: 'filtermain',
-          sendpropos: '',
-          getemit: ''
-        }
-      ]
-    };
-  },
-  mounted() {
-    // console.log(go, '11111111111111111');
-
+      res: data
+    }
   },
   methods: {
-
+    error() {
+      if (this.res.code === 500) {
+         this.$router.push("/500")
+      } else if (this.res.code === 404) {
+         this.$router.push("/404")
+      } else {
+         this.$router.push("/null")
+      }
+    }
   }
-};
+}
 </script>
-
-<style scoped lang="scss">
-@import "@/styles/mixin.scss";
-.main {
-  @include innerpadding(15px);
+<style lang="scss" scoped>
+.icon{
+  font-size:14px;
+  display:block;
+  width:100%;
+  color: #080367;
+  border-left:5px solid #fc4b3b;
+  padding-left:12px;
+  font-weight:700px;
+  margin-bottom:20px;
 }
 </style>

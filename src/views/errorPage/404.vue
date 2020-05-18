@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="box">
-      <p>啊哦！页面好像找不到了,返回<a href="#">上一级</a>...</p>
+      <p>啊哦！页面好像找不到了,返回<a href="#" @click="goback">上一级</a>...</p>
     </div>
   </div>
 </template>
@@ -12,6 +12,11 @@ export default {
      return {
 
      }
+   },
+    methods: {
+      goback() {
+        window.history.go(-1);
+      }
    }
 }
 </script>

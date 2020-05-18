@@ -12,6 +12,7 @@
       :showform="showform"
       :showdata="showdata"
       :tab-data.sync="tableData"
+      sel-name="name"
     ></el-search>
     <el-table
       :data="tableData"
